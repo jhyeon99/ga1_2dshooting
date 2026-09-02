@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     public float MinPlayerY = 0;
     public bool PlayerXWarpAble = false; 
     public float MaxPlayerXAbs = 0;
+    public float WarpPlayerXAbs = 0;
     
     // 매 프레임마다 실행된다.
     // 초당 프레임 실행 횟수는 별다른 설정이 없는 한 가능한 많이 실행한다.
@@ -84,6 +85,20 @@ public class PlayerMove : MonoBehaviour
                 else
                 {
                     transform.position = new Vector2(-MaxPlayerXAbs, transform.position.y);
+                }
+            }
+        }
+        else
+        {
+            if (Math.Abs(transform.position.x) > WarpPlayerXAbs)
+            {
+                if (transform.position.x > 0)
+                {
+                    transform.position = new Vector2(-WarpPlayerXAbs, transform.position.y);
+                }
+                else
+                {
+                    transform.position = new Vector2(WarpPlayerXAbs, transform.position.y);
                 }
             }
         }

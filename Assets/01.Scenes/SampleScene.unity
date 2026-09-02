@@ -514,6 +514,7 @@ MonoBehaviour:
   FirePoint: {fileID: 153261528}
   NumOfBulletFireOnce: 2
   DistanceBetweenFiredBullets: 1
+  CooldownDelay: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

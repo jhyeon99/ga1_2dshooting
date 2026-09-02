@@ -13,32 +13,37 @@ public class PlayerFire : MonoBehaviour
     public float DistanceBetweenFiredBullets = 0;
 
     private bool _isCooltime = false;
-    public float cooldownDelay = 0;
+    private float _cooldowntimer = 0;
+    public float CooldownDelay = 0;
     
-    void Update()
+    private void Update()
     {
         // 1. 스페이스 바를 누른다면
-        if (Input.GetKeyDown(KeyCode.Space) && !_isCooltime)
+        if (!_isCooltime)
         {
-            StartCoroutine(Cooldown());
-            
-            // 2. 총알 프리팹을 생성한다.
-            // Instantiate는 프리팹을 복사해서 (Monobehaviour를 상속받는) 게임 오브젝트를 생성하고 씬에 넣어주는 기능
-            float lengthOfBullets = (NumOfBulletFireOnce - 1) * DistanceBetweenFiredBullets;
-            for (int i = 0; i < NumOfBulletFireOnce; i++)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                float offsetX = -lengthOfBullets / 2 + i * DistanceBetweenFiredBullets;
-                GameObject bullet = Instantiate(BulletPrefab);
-                bullet.transform.position = FirePoint.position;
-                bullet.transform.position = (Vector2)bullet.transform.position + new Vector2(offsetX, 0);
+                _isCooltime = true;
+                _cooldowntimer = CooldownDelay;
+                // 2. 총알 프리팹을 생성한다.
+                // Instantiate는 프리팹을 복사해서 (Monobehaviour를 상속받는) 게임 오브젝트를 생성하고 씬에 넣어주는 기능
+                float lengthOfBullets = (NumOfBulletFireOnce - 1) * DistanceBetweenFiredBullets;
+                for (int i = 0; i < NumOfBulletFireOnce; i++)
+                {
+                    float offsetX = -lengthOfBullets / 2 + i * DistanceBetweenFiredBullets;
+                    GameObject bullet = Instantiate(BulletPrefab);
+                    bullet.transform.position = FirePoint.position;
+                    bullet.transform.position = (Vector2)bullet.transform.position + new Vector2(offsetX, 0);
+                }
             }
         }
-    }
-    
-    public IEnumerator Cooldown()
-    {
-        _isCooltime = true;
-        yield return new WaitForSeconds(cooldownDelay);
-        _isCooltime = false;
+        else
+        {
+            _cooldowntimer -= Time.deltaTime;
+            if (_cooldowntimer <= 0)
+            {
+                _isCooltime = false;
+            }
+        }
     }
 }

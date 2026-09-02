@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
@@ -10,12 +11,17 @@ public class PlayerFire : MonoBehaviour
     public Transform FirePoint = null;
     public int NumOfBulletFireOnce = 0;
     public float DistanceBetweenFiredBullets = 0;
+
+    private bool _isCooltime = false;
+    public float cooldownDelay = 0;
     
     void Update()
     {
         // 1. 스페이스 바를 누른다면
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !_isCooltime)
         {
+            StartCoroutine(Cooldown());
+            
             // 2. 총알 프리팹을 생성한다.
             // Instantiate는 프리팹을 복사해서 (Monobehaviour를 상속받는) 게임 오브젝트를 생성하고 씬에 넣어주는 기능
             float lengthOfBullets = (NumOfBulletFireOnce - 1) * DistanceBetweenFiredBullets;
@@ -27,5 +33,12 @@ public class PlayerFire : MonoBehaviour
                 bullet.transform.position = (Vector2)bullet.transform.position + new Vector2(offsetX, 0);
             }
         }
+    }
+    
+    public IEnumerator Cooldown()
+    {
+        _isCooltime = true;
+        yield return new WaitForSeconds(cooldownDelay);
+        _isCooltime = false;
     }
 }

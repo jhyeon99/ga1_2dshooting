@@ -511,9 +511,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFire
   BulletPrefab: {fileID: 6774899501592191002, guid: 0d60d5431c839be44aff755164e2bd1d, type: 3}
+  SubBulletPrefab: {fileID: 0}
   FirePoint: {fileID: 153261528}
-  NumOfBulletFireOnce: 2
-  DistanceBetweenFiredBullets: 1
+  NumOfBulletFireOnce: 0
+  DistanceBetweenFiredBullets: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

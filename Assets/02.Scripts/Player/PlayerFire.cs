@@ -7,6 +7,7 @@ public class PlayerFire : MonoBehaviour
     // 필요 속성
     // - 총알 프리팹
     public GameObject BulletPrefab = null;
+    public GameObject SubBulletPrefab = null;
     // - 생성 위치(총구)
     public Transform FirePoint = null;
     public int NumOfBulletFireOnce = 0;
@@ -17,6 +18,10 @@ public class PlayerFire : MonoBehaviour
     public float CooldownDelay = 0;
     
     private bool _isAutoFireMode = false;
+
+    public bool IsFireSubBullet = false;
+    public Transform[] SubBulletFirePoint = null;
+    
     
     private void Update()
     {
@@ -40,6 +45,15 @@ public class PlayerFire : MonoBehaviour
                     GameObject bullet = Instantiate(BulletPrefab);
                     bullet.transform.position = FirePoint.position;
                     bullet.transform.position = (Vector2)bullet.transform.position + new Vector2(offsetX, 0);
+                }
+
+                if (IsFireSubBullet)
+                {
+                    foreach (Transform subBulletTransform in SubBulletFirePoint)
+                    {
+                        GameObject subBullet = Instantiate(SubBulletPrefab);
+                        subBullet.transform.position = subBulletTransform.position;
+                    }
                 }
             }
         }

@@ -60,8 +60,8 @@ public class PlayerMove : MonoBehaviour
         // 3. 방향과 속력에 따라 이동한다.
         // 속도 = 방향 * 속력
         // 매직 넘버: 보는 사람에 따라 의미가 달라질 수 있는 헷갈리는 숫자
-        Vector2 normalizedSpeed = Vector2.Normalize(direction);
-        transform.Translate(normalizedSpeed * Speed * Time.deltaTime);
+        Vector2 normalizedDirection = Vector2.Normalize(direction);
+        transform.Translate(normalizedDirection * Speed * Time.deltaTime);
         // deltaTime: 이전 프레임으로부터 지금 프레임까지 시간이 얼마나 지났는지 MS로 반환
 
         if (transform.position.y > MaxPlayerY)

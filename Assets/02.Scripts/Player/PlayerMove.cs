@@ -4,8 +4,10 @@ using System;
 public class PlayerMove : MonoBehaviour
 {
     // 목적: 키보드 입력에 따라서 플레이어 이동 처리를 하고 싶다.
-
+    
     // 필요 필드:
+    public PlayerMoveCommandInvoker PlayerMoveCommandInvoker;
+    
     public float Speed = 0;
     public float SpeedFluctuation = 0;
     public float MaxPlayerY = 0;
@@ -18,8 +20,6 @@ public class PlayerMove : MonoBehaviour
     // 초당 프레임 실행 횟수는 별다른 설정이 없는 한 가능한 많이 실행한다.
     private void Update()
     {
-        
-        
         // 1. 키보드 입력을 받는다.
         /*if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -61,49 +61,54 @@ public class PlayerMove : MonoBehaviour
         // 속도 = 방향 * 속력
         // 매직 넘버: 보는 사람에 따라 의미가 달라질 수 있는 헷갈리는 숫자
         Vector2 normalizedDirection = Vector2.Normalize(direction);
-        transform.Translate(normalizedDirection * Speed * Time.deltaTime);
+        Vector2 nextPlayerPosition = (Vector2)transform.position + normalizedDirection * Speed * Time.deltaTime;
         // deltaTime: 이전 프레임으로부터 지금 프레임까지 시간이 얼마나 지났는지 MS로 반환
 
-        if (transform.position.y > MaxPlayerY)
+        if (nextPlayerPosition.y > MaxPlayerY)
         {
-            transform.position = new Vector3(transform.position.x, MaxPlayerY, transform.position.z);
+            nextPlayerPosition = new Vector2(nextPlayerPosition.x, MaxPlayerY);
         }
 
-        if (transform.position.y < MinPlayerY)
+        if (nextPlayerPosition.y < MinPlayerY)
         {
-            transform.position = new Vector3(transform.position.x, MinPlayerY, transform.position.z);
+            nextPlayerPosition = new Vector2(nextPlayerPosition.x, MinPlayerY);
         }
 
         if (!PlayerXWarpAble)
         {
-            if (Math.Abs(transform.position.x) > MaxPlayerXAbs)
+            if (Math.Abs(nextPlayerPosition.x) > MaxPlayerXAbs)
             {
-                if (transform.position.x > 0)
+                if (nextPlayerPosition.x > 0)
                 {
-                    transform.position = new Vector2(MaxPlayerXAbs, transform.position.y);
+                    nextPlayerPosition = new Vector2(MaxPlayerXAbs, nextPlayerPosition.y);
                 }
                 else
                 {
-                    transform.position = new Vector2(-MaxPlayerXAbs, transform.position.y);
+                    nextPlayerPosition = new Vector2(-MaxPlayerXAbs, nextPlayerPosition.y);
                 }
             }
         }
         else
         {
-            if (Math.Abs(transform.position.x) > WarpPlayerXAbs)
+            if (Math.Abs(nextPlayerPosition.x) > WarpPlayerXAbs)
             {
-                if (transform.position.x > 0)
+                if (nextPlayerPosition.x > 0)
                 {
-                    transform.position = new Vector2(-WarpPlayerXAbs, transform.position.y);
+                    nextPlayerPosition = new Vector2(-WarpPlayerXAbs, nextPlayerPosition.y);
                 }
                 else
                 {
-                    transform.position = new Vector2(WarpPlayerXAbs, transform.position.y);
+                    nextPlayerPosition = new Vector2(WarpPlayerXAbs, nextPlayerPosition.y);
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && !PlayerMoveCommandInvoker.IsReplaying())
+        {
+            StartCoroutine(PlayerMoveCommandInvoker.ReplayCorutine());
+        }
         
-        // 새로운 위치 = 현재 위치 + 방향 * 속력 * 시간
-        // transform.position += (Vector3)direction * Speed * Time.deltaTime;
+        PlayerMoveCommand moveCommand = new PlayerMoveCommand(transform, nextPlayerPosition);
+        PlayerMoveCommandInvoker.ExcuteCommand(moveCommand);
     }
 }

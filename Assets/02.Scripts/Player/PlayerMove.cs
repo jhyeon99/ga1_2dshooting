@@ -78,16 +78,13 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            if (Math.Abs(nextPlayerPosition.x) > WarpPlayerXAbs)
+            if (nextPlayerPosition.x > WarpPlayerXAbs)
             {
-                if (nextPlayerPosition.x > 0)
-                {
-                    nextPlayerPosition = new Vector2(-WarpPlayerXAbs, nextPlayerPosition.y);
-                }
-                else
-                {
-                    nextPlayerPosition = new Vector2(WarpPlayerXAbs, nextPlayerPosition.y);
-                }
+                nextPlayerPosition = new Vector2(-WarpPlayerXAbs, nextPlayerPosition.y);
+            }
+            else if (nextPlayerPosition.x < -WarpPlayerXAbs)
+            { 
+                nextPlayerPosition = new Vector2(WarpPlayerXAbs, nextPlayerPosition.y);
             }
         }
         

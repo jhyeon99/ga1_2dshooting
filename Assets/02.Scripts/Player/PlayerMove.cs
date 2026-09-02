@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 
     // 필요 필드:
     public float Speed = 0;
+    public float SpeedFluctuation = 0;
     
     // 매 프레임마다 실행된다.
     // 초당 프레임 실행 횟수는 별다른 설정이 없는 한 가능한 많이 실행한다.
@@ -29,10 +30,22 @@ public class PlayerMove : MonoBehaviour
             transform.Translate(direction * Speed * Time.deltaTime);
             // deltaTime: 이전 프레임으로부터 지금 프레임까지 시간이 얼마나 지났는지 MS로 반환
         }*/
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Speed += SpeedFluctuation;
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Speed -= SpeedFluctuation;
+        }
         
         // 1. 키보드 입력을 받는다.
         float h = Input.GetAxis("Horizontal");  // 키보드 왼/오른쪽 입력 상태에 따라 -1f ~ 0 ~ 1f
         float v = Input.GetAxis("Vertical");    // 키보드 위/아래쪽 입력 상태에 따라 -1f ~ 0 ~ 1f
+        
+        //float h = Input.GetAxisRaw("Horizontal");  // 키보드 왼/오른쪽 입력 상태에 따라 -1f or 0 or 1f
+        //float v = Input.GetAxisRaw("Vertical");    // 키보드 위/아래쪽 입력 상태에 따라 -1f or 0 or 1f
         
         // 2. 키보드 입력에 따라 방향을 구한다.
         // 게임에는 벡터라는 타입이 있다. 벡터는 크기와 방향을 의미한다.

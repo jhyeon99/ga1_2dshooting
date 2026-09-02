@@ -17,15 +17,16 @@ public class PlayerMove : MonoBehaviour
     public float MaxPlayerXAbs = 0;
     public float WarpPlayerXAbs = 0;
     
-    // 매 프레임마다 실행된다.
-    // 초당 프레임 실행 횟수는 별다른 설정이 없는 한 가능한 많이 실행한다.
-    private void Update()
+    private float _inputHorizontal;
+    private float _inputVertical;
+
+    private void GetInput()
     {
         // 1. 키보드 입력을 받는다.
         /*if (Input.GetKey(KeyCode.LeftArrow))
         {
             Debug.Log("왼쪽 방향키를 누르는 중");
-            
+
             // 2. 키보드 입력에 따라 방향을 구한다.
             // 게임에는 벡터라는 타입이 있다. 벡터는 크기와 방향을 의미한다.
             Vector2 direction = new Vector2(-1, 0); // 왼쪽 방향
@@ -42,21 +43,25 @@ public class PlayerMove : MonoBehaviour
         {
             Speed += SpeedFluctuation;
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Speed -= SpeedFluctuation;
         }
+        if (Input.GetKeyDown(KeyCode.R) && !PlayerMoveCommandInvoker.IsReplaying())
+        {
+            StartCoroutine(PlayerMoveCommandInvoker.ReplayCorutine());
+        }
         
         // 1. 키보드 입력을 받는다.
-        float h = Input.GetAxisRaw("Horizontal");  // 키보드 왼/오른쪽 입력 상태에 따라 -1f or 0 or 1f
-        float v = Input.GetAxisRaw("Vertical");    // 키보드 위/아래쪽 입력 상태에 따라 -1f or 0 or 1f
-        
-        //float h = Input.GetAxis("Horizontal");  // 키보드 왼/오른쪽 입력 상태에 따라 -1f ~ 0 ~ 1f
-        //float v = Input.GetAxis("Vertical");    // 키보드 위/아래쪽 입력 상태에 따라 -1f ~ 0 ~ 1f
-        
+        _inputHorizontal = Input.GetAxisRaw("Horizontal");  // 키보드 왼/오른쪽 입력 상태에 따라 -1f or 0 or 1f
+        _inputVertical = Input.GetAxisRaw("Vertical");    // 키보드 위/아래쪽 입력 상태에 따라 -1f or 0 or 1f
+    }
+    
+    private void Move()
+    {
         // 2. 키보드 입력에 따라 방향을 구한다.
         // 게임에는 벡터라는 타입이 있다. 벡터는 크기와 방향을 의미한다.
-        Vector2 direction = new Vector2(h, v);
+        Vector2 direction = new Vector2(_inputHorizontal, _inputVertical);
 
         // 3. 방향과 속력에 따라 이동한다.
         // 속도 = 방향 * 속력
@@ -85,13 +90,16 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.R) && !PlayerMoveCommandInvoker.IsReplaying())
-        {
-            StartCoroutine(PlayerMoveCommandInvoker.ReplayCorutine());
-        }
         
         PlayerMoveCommand moveCommand = new PlayerMoveCommand(transform, nextPlayerPosition);
         PlayerMoveCommandInvoker.ExcuteCommand(moveCommand);
+    }
+    
+    // 매 프레임마다 실행된다.
+    // 초당 프레임 실행 횟수는 별다른 설정이 없는 한 가능한 많이 실행한다.
+    private void Update()
+    {
+        GetInput();
+        Move();
     }
 }

@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 79707900}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubBulletFirePoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 153261528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,6 +232,10 @@ PrefabInstance:
     - target: {fileID: 3251738256947089115, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
       propertyPath: m_Name
       value: Enemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3643960164871185898, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -525,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 676029542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubBulletFirePoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +623,7 @@ GameObject:
   - component: {fileID: 1247577403}
   - component: {fileID: 1247577405}
   - component: {fileID: 1247577404}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

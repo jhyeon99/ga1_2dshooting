@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class BulletMove : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public Vector2 Direction = Vector2.up;
-    public float Speed = 0;
+    public float MoveSpeed = 0;
 
     void Move()
     {
-        transform.position = (Vector2)transform.position + Direction * Speed * Time.deltaTime;
+        transform.position = (Vector2)transform.position + Direction * MoveSpeed * Time.deltaTime;
     }
 
     void Update()

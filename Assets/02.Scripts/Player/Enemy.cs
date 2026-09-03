@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float Health = 100;
     public float MoveSpeed = 0;
 
     private void Update()

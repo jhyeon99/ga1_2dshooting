@@ -4,18 +4,18 @@ using System;
 public class PlayerMove : MonoBehaviour
 {
     // 목적: 키보드 입력에 따라서 플레이어 이동 처리를 하고 싶다.
-    
+
     // 필요 필드:
     public PlayerMoveCommandInvoker PlayerMoveCommandInvoker;
-    
+
     public float Speed = 0;
     public float SpeedFluctuation = 0;
     public float MaxPlayerY = 0;
     public float MinPlayerY = 0;
-    public bool PlayerXWarpAble = false; 
+    public bool PlayerXWarpAble = false;
     public float MaxPlayerXAbs = 0;
     public float WarpPlayerXAbs = 0;
-    
+
     private float _inputHorizontal;
     private float _inputVertical;
 
@@ -42,20 +42,22 @@ public class PlayerMove : MonoBehaviour
         {
             Speed += SpeedFluctuation;
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Speed -= SpeedFluctuation;
         }
+
         if (Input.GetKeyDown(KeyCode.R) && !PlayerMoveCommandInvoker.IsReplaying())
         {
             StartCoroutine(PlayerMoveCommandInvoker.ReplayCorutine());
         }
-        
+
         // 1. 키보드 입력을 받는다.
-        _inputHorizontal = Input.GetAxisRaw("Horizontal");  // 키보드 왼/오른쪽 입력 상태에 따라 -1f or 0 or 1f
-        _inputVertical = Input.GetAxisRaw("Vertical");    // 키보드 위/아래쪽 입력 상태에 따라 -1f or 0 or 1f
+        _inputHorizontal = Input.GetAxisRaw("Horizontal"); // 키보드 왼/오른쪽 입력 상태에 따라 -1f or 0 or 1f
+        _inputVertical = Input.GetAxisRaw("Vertical"); // 키보드 위/아래쪽 입력 상태에 따라 -1f or 0 or 1f
     }
-    
+
     private void Move()
     {
         // 2. 키보드 입력에 따라 방향을 구한다.
@@ -82,15 +84,15 @@ public class PlayerMove : MonoBehaviour
                 nextPlayerPosition = new Vector2(-WarpPlayerXAbs, nextPlayerPosition.y);
             }
             else if (nextPlayerPosition.x < -WarpPlayerXAbs)
-            { 
+            {
                 nextPlayerPosition = new Vector2(WarpPlayerXAbs, nextPlayerPosition.y);
             }
         }
-        
+
         PlayerMoveCommand moveCommand = new PlayerMoveCommand(transform, nextPlayerPosition);
         PlayerMoveCommandInvoker.ExcuteCommand(moveCommand);
     }
-    
+
     // 매 프레임마다 실행된다.
     // 초당 프레임 실행 횟수는 별다른 설정이 없는 한 가능한 많이 실행한다.
     private void Update()

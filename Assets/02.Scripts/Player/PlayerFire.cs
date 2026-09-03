@@ -7,7 +7,9 @@ public class PlayerFire : MonoBehaviour
     // 필요 속성
     // - 총알 프리팹
     public GameObject BulletPrefab = null;
+
     public GameObject SubBulletPrefab = null;
+
     // - 생성 위치(총구)
     public Transform FirePoint = null;
     public int NumOfBulletFireOnce = 0;
@@ -16,19 +18,20 @@ public class PlayerFire : MonoBehaviour
     private bool _isCooltime = false;
     private float _cooldowntimer = 0;
     public float CooldownDelay = 0;
-    
+
     private bool _isAutoFireMode = false;
 
     public bool IsFireSubBullet = false;
     public Transform[] SubBulletFirePoint = null;
-    
-    
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _isAutoFireMode = !_isAutoFireMode;
         }
+
         // 1. 스페이스 바를 누른다면
         if (!_isCooltime)
         {

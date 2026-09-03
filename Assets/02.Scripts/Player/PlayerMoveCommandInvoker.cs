@@ -6,11 +6,11 @@ public class PlayerMoveCommandInvoker : MonoBehaviour
 {
     private Queue<ICommand> _commandReplay = new Queue<ICommand>();
     private bool _isReplaying = false;
-    
+
     public void ExcuteCommand(ICommand command)
     {
         if (_isReplaying) return;
-        
+
         command.Execute();
         _commandReplay.Enqueue(command);
     }
@@ -24,7 +24,7 @@ public class PlayerMoveCommandInvoker : MonoBehaviour
             command.Execute();
             yield return null;
         }
-        
+
         _isReplaying = false;
     }
 

@@ -10,7 +10,7 @@ public class PlayerMoveCommand : ICommand
 {
     private readonly Transform _playerTransform;
     private readonly Vector2 _targetPosition;
-    
+
     public PlayerMoveCommand(Transform playerTransform, Vector2 targetPosition)
     {
         _playerTransform = playerTransform;
@@ -18,7 +18,7 @@ public class PlayerMoveCommand : ICommand
     }
 
     public void Execute()
-    {   
+    {
         _playerTransform.position = _targetPosition;
     }
 }

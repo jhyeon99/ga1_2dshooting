@@ -151,6 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8403db10e42794045a2a74899485623f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DirectionalEnemy
-  Health: 100
-  MoveSpeed: 1
+  _health: 100
+  _moveSpeed: 1
   Target: {fileID: 0}

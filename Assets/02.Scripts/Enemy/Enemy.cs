@@ -3,9 +3,18 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public float Health = 100;
+    [SerializeField] private float _health = 100;
     protected Vector2 Direction = Vector2.zero;
-    public float MoveSpeed = 0;
+    [SerializeField] private float _moveSpeed = 0;
+
+    public void TakeDamage(int damage)
+    {
+        _health -= damage;
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -14,7 +23,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Direction * MoveSpeed * Time.deltaTime);
+        transform.Translate(Direction * _moveSpeed * Time.deltaTime);
     }
 
     protected virtual void Update()

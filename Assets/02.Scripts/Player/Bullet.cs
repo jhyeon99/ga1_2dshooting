@@ -3,12 +3,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Vector2 Direction = Vector2.up;
-    public float MoveSpeed = 0;
-    public float Damage = 0;
+    [SerializeField] private float _moveSpeed = 0;
+    [SerializeField] private int _damage = 0;
 
     void Move()
     {
-        transform.position = (Vector2)transform.position + Direction * MoveSpeed * Time.deltaTime;
+        transform.position = (Vector2)transform.position + Direction * _moveSpeed * Time.deltaTime;
     }
 
     void Update()
@@ -23,11 +23,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
 
             var enemyScript = other.gameObject.GetComponent<Enemy>();
-            enemyScript.Health -= Damage;
-            if (enemyScript.Health <= 0)
-            {
-                Destroy(other.gameObject);
-            }
+            enemyScript.TakeDamage(_damage);
         }
     }
 }

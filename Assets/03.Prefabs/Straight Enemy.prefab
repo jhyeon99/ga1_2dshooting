@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d2d9b4db6c7d04c847ea74db15ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StraightEnemy
-  Health: 100
-  MoveSpeed: 1
+  _health: 100
+  _moveSpeed: 1

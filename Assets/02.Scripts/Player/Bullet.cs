@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public Vector2 Direction = Vector2.up;
     public float MoveSpeed = 0;
+    public float Damage = 0;
 
     void Move()
     {
@@ -20,7 +21,13 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
-            Destroy(other.gameObject);
+
+            var enemyScript = other.gameObject.GetComponent<Enemy>();
+            enemyScript.Health -= Damage;
+            if (enemyScript.Health <= 0)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 }

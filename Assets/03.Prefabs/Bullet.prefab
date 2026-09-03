@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9540af1c41b1c64894c236b0c364b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  direction: {x: 0, y: 1}
-  speed: 8
+  Direction: {x: 0, y: 1}
+  Speed: 8
 --- !u!58 &5084789204925083811
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ public class PlayerMove : MonoBehaviour
     private float _inputHorizontal;
     private float _inputVertical;
 
+    [SerializeField] private float _health = 100f;
+
     private void GetInput()
     {
         // 1. 키보드 입력을 받는다.
@@ -99,5 +101,14 @@ public class PlayerMove : MonoBehaviour
     {
         GetInput();
         Move();
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

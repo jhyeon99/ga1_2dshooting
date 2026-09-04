@@ -34,8 +34,14 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void GetDirection();
 
-    public float GetDamage()
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        return _damage;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerMove player = other.gameObject.GetComponent<PlayerMove>();
+            Destroy(gameObject);
+            player.TakeDamage(_damage);
+        }
     }
 }

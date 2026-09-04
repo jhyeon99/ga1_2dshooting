@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class DirectionalEnemy : Enemy
 {
-    public Transform Target;
+    public Transform _target;
 
     protected override void GetDirection()
     {
-        Vector2 direction = Target.position - transform.position;
+        _target = GameObject.FindWithTag("Player").transform;
+        Vector2 direction = _target.position - transform.position;
         Vector2 normalizedDirection = direction.normalized;
         Direction = normalizedDirection;
     }

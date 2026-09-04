@@ -38,16 +38,6 @@ public class PlayerMove : MonoBehaviour
             // deltaTime: 이전 프레임으로부터 지금 프레임까지 시간이 얼마나 지났는지 MS로 반환
         }*/
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Speed += SpeedFluctuation;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Speed -= SpeedFluctuation;
-        }
-
         if (Input.GetKeyDown(KeyCode.R) && !PlayerMoveCommandInvoker.IsReplaying())
         {
             StartCoroutine(PlayerMoveCommandInvoker.ReplayCorutine());
@@ -99,5 +89,10 @@ public class PlayerMove : MonoBehaviour
     {
         GetInput();
         Move();
+    }
+
+    public void SpeedUp(float amount)
+    {
+        Speed += amount;
     }
 }

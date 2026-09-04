@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -8,17 +9,26 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private float _damage = 0;
 
+    [SerializeField] private float _itemSpawnProbability = 0.3f;
+    private ItemFactory _itemFactory = null;
+
     public void TakeDamage(float damage)
     {
         _health -= damage;
         if (_health <= 0)
         {
+            if (_itemSpawnProbability <= Random.Range(0f, 1f))
+            {
+                _itemFactory.SpawnRandomItem(gameObject.transform.position);
+            }
+
             Destroy(gameObject);
         }
     }
 
     protected virtual void Start()
     {
+        _itemFactory = GameObject.FindWithTag("ItemFactory").GetComponent<ItemFactory>();
         GetDirection();
     }
 

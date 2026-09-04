@@ -17,7 +17,7 @@ public class PlayerFire : MonoBehaviour
 
     private bool _isCooltime = false;
     private float _cooldowntimer = 0;
-    public float CooldownDelay = 0;
+    public float CooldownDelay = 1;
 
     private bool _isAutoFireMode = false;
 
@@ -68,5 +68,10 @@ public class PlayerFire : MonoBehaviour
                 _isCooltime = false;
             }
         }
+    }
+
+    public void AttackspeedUp()
+    {
+        CooldownDelay *= 0.9f;
     }
 }

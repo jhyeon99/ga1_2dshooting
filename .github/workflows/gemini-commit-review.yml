@@ -29,7 +29,6 @@ jobs:
           persist-credentials: false
 
       - name: Create commit diff
-        id: create_diff
         shell: bash
         env:
           COMMIT_SHA: ${{ github.sha }}
@@ -51,15 +50,11 @@ jobs:
           fi
 
           if [[ ! -s commit.diff ]]; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "Assets/02.Scripts에서 리뷰할 C# 변경사항이 없습니다."
-            exit 0
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            exit 1
           fi
 
       - name: Run Gemini review
-        if: ${{ steps.create_diff.outputs.has_changes == 'true' }}
         id: gemini_review
         uses: google-github-actions/run-gemini-cli@v0.1.22
         env:
@@ -88,7 +83,7 @@ jobs:
             리뷰 결과만 한국어로 작성하세요.
 
       - name: Post review on commit
-        if: ${{ steps.create_diff.outputs.has_changes == 'true' && steps.gemini_review.outputs.summary != '' }}
+        if: ${{ steps.gemini_review.outputs.summary != '' }}
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}

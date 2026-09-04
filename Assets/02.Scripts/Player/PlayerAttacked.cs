@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerAttacked : MonoBehaviour
 {
-    [SerializeField] private float _health = 0;
+    [SerializeField] private float _health = 100f;
 
     private void OnCollisionEnter2D(Collision2D other)
     {

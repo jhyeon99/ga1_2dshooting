@@ -33,11 +33,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void RandomSpawn()
-    {
-        Spawn(Random.Range(0, _enemySpawnData.Length));
-    }
-
     private void SpawnWithProbability()
     {
         float sum = 0;

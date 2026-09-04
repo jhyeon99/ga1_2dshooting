@@ -40,11 +40,14 @@ public abstract class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Player player = other.gameObject.GetComponent<Player>();
-            if (player != null)
+            if (player == null)
             {
-                Destroy(gameObject);
-                player.TakeDamage(_damage);
+                Debug.Log("Player 컴포넌트가 존재하지 않습니다.");
+                return;
             }
+
+            Destroy(gameObject);
+            player.TakeDamage(_damage);
         }
     }
 }

@@ -2,25 +2,21 @@ using UnityEngine;
 
 public class ChaserEnemy : Enemy
 {
-    private Transform _target;
+    private Transform _target = null;
     public float ChaseUpdateDelay = 0;
-    private float _chaseUpdateTimer = 0;
-
-    private void Start()
-    {
-        GetDirection();
-    }
+    private float _chaseUpdateTimer = 1f;
+    private GameObject _player = null;
 
     protected override void GetDirection()
     {
-        GameObject gameObject = GameObject.FindWithTag("Player");
-        if (gameObject == null)
+        _player = GameObject.FindWithTag("Player");
+        if (_player == null)
         {
             Direction = Vector2.zero;
             return;
         }
 
-        _target = gameObject.transform;
+        _target = _player.transform;
         Vector2 direction = _target.position - transform.position;
         Vector2 normalizedDirection = direction.normalized;
         Direction = normalizedDirection;

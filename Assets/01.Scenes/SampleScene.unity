@@ -803,9 +803,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1247577398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718485a86c66ad640b43bdfff3ed922c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd59f44f19c29bb489f98f220fe8849f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttacked
+  m_EditorClassIdentifier: Assembly-CSharp::Player
   _health: 100
 --- !u!1001 &1644159420
 PrefabInstance:

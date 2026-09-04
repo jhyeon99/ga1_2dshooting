@@ -14,7 +14,7 @@ public class DirectionalEnemy : Enemy
             return;
         }
 
-        _target = gameObject.transform;
+        _target = _player.transform;
         Vector2 direction = _target.position - transform.position;
         Vector2 normalizedDirection = direction.normalized;
         Direction = normalizedDirection;

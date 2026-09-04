@@ -153,4 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DirectionalEnemy
   _health: 100
   _moveSpeed: 1
-  Target: {fileID: 0}
+  _damage: 40
+  _target: {fileID: 0}

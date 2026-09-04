@@ -153,5 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChaserEnemy
   _health: 100
   _moveSpeed: 1
-  Target: {fileID: 0}
+  _damage: 40
   ChaseUpdateDelay: 1

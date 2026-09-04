@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float _health = 100;
     protected Vector2 Direction = Vector2.zero;
     [SerializeField] private float _moveSpeed = 0;
+    [SerializeField] private float _damage = 0;
 
     public void TakeDamage(int damage)
     {
@@ -32,4 +33,9 @@ public abstract class Enemy : MonoBehaviour
     }
 
     protected abstract void GetDirection();
+
+    public float GetDamage()
+    {
+        return _damage;
+    }
 }

@@ -17,6 +17,8 @@ public class ChaserEnemy : Enemy
     {
         base.Update();
 
+        GameObject _player = GameObject.FindWithTag("Player"); // 테스트용 코드
+
         _chaseUpdateTimer += Time.deltaTime;
         if (_chaseUpdateTimer > ChaseUpdateDelay)
         {

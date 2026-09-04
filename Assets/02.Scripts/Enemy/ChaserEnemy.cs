@@ -3,8 +3,8 @@ using UnityEngine;
 public class ChaserEnemy : Enemy
 {
     private Transform _target = null;
-    public float ChaseUpdateDelay = 0;
-    private float _chaseUpdateTimer = 1f;
+    public float ChaseUpdateDelay = 1f;
+    private float _chaseUpdateTimer = 0;
     private GameObject _player = null;
 
     protected override void GetDirection()

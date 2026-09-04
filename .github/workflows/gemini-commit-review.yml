@@ -54,40 +54,57 @@ jobs:
             exit 1
           fi
 
+      - name: Set up Node.js & Install Gemini CLI
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Run Gemini review
         id: gemini_review
-        uses: google-github-actions/run-gemini-cli@v0.1.22
+        shell: bash
         env:
-          GEMINI_CLI_TRUST_WORKSPACE: 'true'
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          gemini_model: 'gemini-2.5-flash'
-          prompt: |
-            현재 저장소의 최신 커밋을 코드 리뷰하세요.
+        run: |
+          npm install -g @google/gemini-cli
 
-            반드시 먼저 commit.diff 파일을 읽고,
-            Assets/02.Scripts 폴더에 포함된 C# 변경사항을 검토하세요.
+          PROMPT_TEXT=$(cat << 'EOF'
+          현재 저장소의 최신 커밋을 코드 리뷰하세요.
 
-            저장소의 GEMINI.md와 GEMINI.md에서 가져온
-            코드 리뷰 기준을 반드시 적용하세요.
+          반드시 먼저 commit.diff 파일을 읽고,
+          Assets/02.Scripts 폴더에 포함된 C# 변경사항을 검토하세요.
 
-            변경된 코드의 버그, 예외 가능성, Unity 생명주기 문제,
-            성능 문제, 메모리 할당, 설계 및 가독성을 검토하세요.
+          저장소의 GEMINI.md와 GEMINI.md에서 가져온
+          코드 리뷰 기준을 반드시 적용하세요.
 
-            변경사항과 직접 관련된 문제를 우선하고,
-            근거가 약한 추측이나 과도한 리팩터링 제안은 피하세요.
+          변경된 코드의 버그, 예외 가능성, Unity 생명주기 문제,
+          성능 문제, 메모리 할당, 설계 및 가독성을 검토하세요.
 
-            파일을 수정하거나 Commit하지 말고
-            리뷰 결과만 한국어로 작성하세요.
+          변경사항과 직접 관련된 문제를 우선하고,
+          근거가 약한 추측이나 과도한 리팩터링 제안은 피하세요.
+
+          파일을 수정하거나 Commit하지 말고
+          리뷰 결과만 한국어로 작성하세요.
+          EOF
+          )
+
+          # gemini CLI 직접 실행 및 stderr 로그 분리
+          REVIEW_OUTPUT=$(gemini run --model "gemini-2.5-flash" --prompt "$PROMPT_TEXT" 2> stderr.log) || true
+          
+          if [[ -s stderr.log ]]; then
+            echo "--- CLI STDERR ---"
+            cat stderr.log
+          fi
+
+          # Output 설정 (GitHub Actions Summary 전달용)
+          echo "summary<<EOF" >> $GITHUB_OUTPUT
+          echo "$REVIEW_OUTPUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Add review to Actions summary
         if: always()
         shell: bash
         env:
           REVIEW_BODY: ${{ steps.gemini_review.outputs.summary }}
-          REVIEW_ERROR: ${{ steps.gemini_review.outputs.error }}
         run: |
           {
             echo "## Gemini Commit Review"
@@ -97,12 +114,6 @@ jobs:
               printf '%s\n' "${REVIEW_BODY}"
             else
               echo "Gemini 리뷰 결과가 생성되지 않았습니다."
-            fi
-
-            if [[ -n "${REVIEW_ERROR}" ]]; then
-              echo
-              echo "### Error"
-              printf '%s\n' "${REVIEW_ERROR}"
             fi
           } >> "${GITHUB_STEP_SUMMARY}"
 

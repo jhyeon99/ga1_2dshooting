@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private float _damage = 0;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _health -= damage;
         if (_health <= 0)

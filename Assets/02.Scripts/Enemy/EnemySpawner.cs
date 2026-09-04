@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     private float _timer = 0;
 
     // - 생성할 프리팹
-    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Enemy[] _enemyPrefabs;
 
 
     private void Update()
@@ -20,13 +20,18 @@ public class EnemySpawner : MonoBehaviour
             _timer = 0;
             _spawnInterval = Random.Range(1f, 3f); // 1 ~ 3
 
-            Spawn();
+            RandomSpawn();
         }
     }
 
-    private void Spawn()
+    private void RandomSpawn()
     {
-        Enemy enemy = Instantiate(_enemyPrefab);
+        Spawn(Random.Range(0, _enemyPrefabs.Length));
+    }
+
+    private void Spawn(int enemyType)
+    {
+        Enemy enemy = Instantiate(_enemyPrefabs[enemyType]);
         enemy.transform.position = transform.position;
     }
 }

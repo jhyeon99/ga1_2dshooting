@@ -3,11 +3,12 @@ using UnityEngine;
 public class DirectionalEnemy : Enemy
 {
     public Transform _target;
+    private GameObject _player = null;
 
     protected override void GetDirection()
     {
-        GameObject gameObject = GameObject.FindWithTag("Player");
-        if (gameObject == null)
+        _player = GameObject.FindWithTag("Player");
+        if (_player == null)
         {
             Direction = Vector2.zero;
             return;

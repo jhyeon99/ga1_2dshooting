@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float _health = 100;
+    [SerializeField] private float _health = 100f;
     protected Vector2 Direction = Vector2.zero;
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private float _damage = 0;
@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         GetDirection();
     }

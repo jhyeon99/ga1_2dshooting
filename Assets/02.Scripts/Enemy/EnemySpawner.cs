@@ -35,6 +35,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnWithProbability()
     {
+        if (_enemySpawnData == null || _enemySpawnData.Length == 0)
+        {
+            Debug.LogWarning("EnemySpawner: Spawn data is empty.");
+            return;
+        }
+
         float sum = 0;
         foreach (var enemySpawnData in _enemySpawnData)
         {

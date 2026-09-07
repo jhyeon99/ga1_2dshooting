@@ -12,9 +12,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float _itemSpawnProbability = 0.3f;
     private ItemFactory _itemFactory = null;
 
+    private Animator _animator = null;
+
     public void TakeDamage(float damage)
     {
         _health -= damage;
+        _animator.SetTrigger("Hitted");
         if (_health <= 0)
         {
             if (_itemSpawnProbability >= Random.Range(0f, 1f))
@@ -29,6 +32,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         _itemFactory = GameObject.FindWithTag("ItemFactory").GetComponent<ItemFactory>();
+        _animator = GetComponent<Animator>();
         GetDirection();
     }
 

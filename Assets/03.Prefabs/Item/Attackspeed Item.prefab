@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982affde2558818409e33a4be0487e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackspeedItem
-  _moveSpeed: 5
+  _lerpTime: 0.5
   _direction: {x: 0, y: 0}
-  _waitInterval: 3
+  _waitInterval: 1
 --- !u!70 &122755070799701113
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

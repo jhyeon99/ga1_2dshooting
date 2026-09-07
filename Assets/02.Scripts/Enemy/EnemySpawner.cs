@@ -24,10 +24,11 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime;
-        if (_timer > _spawnInterval)
+        if (_timer >= _spawnInterval)
         {
             _timer = 0;
             _spawnInterval = Random.Range(_enemyMinSpawnTime, _enemyMaxSpawnTime);
+            Debug.Log("Spawn Interval: " + _spawnInterval);
 
             SpawnWithProbability();
         }
@@ -55,8 +56,7 @@ public class EnemySpawner : MonoBehaviour
             sum += _enemySpawnData[enemyType].probability;
             if (probability <= sum)
             {
-                Enemy enemy = Instantiate(_enemySpawnData[enemyType].prefab);
-                enemy.transform.position = transform.position;
+                Spawn(enemyType);
                 break;
             }
         }

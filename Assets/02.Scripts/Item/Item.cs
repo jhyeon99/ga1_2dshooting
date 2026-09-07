@@ -1,46 +1,37 @@
+using System;
 using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
 public abstract class Item : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 1;
+    [SerializeField] private float _lerpTime = 1;
     [SerializeField] private Vector2 _direction = Vector2.zero;
 
     [SerializeField] private float _waitInterval = 3;
-    private float _waitTimer = 0;
+    private float _timer = 0;
 
+    private Vector2 _startPosition = Vector2.zero;
     private GameObject _playerObject = null;
 
     protected virtual void Start()
     {
         _playerObject = GameObject.FindWithTag("Player");
+        _startPosition = transform.position;
     }
 
     protected virtual void Update()
     {
-        _waitTimer += Time.deltaTime;
-        if (_waitTimer >= _waitInterval)
+        _timer += Time.deltaTime;
+        if (_timer >= _waitInterval)
         {
-            SetDirectionToPlayer();
+            LerpToPlayer();
         }
-
-        Move();
     }
 
-    private void SetDirectionToPlayer()
+    private void LerpToPlayer()
     {
-        if (_playerObject == null)
-        {
-            _direction = Vector2.zero;
-            return;
-        }
-
-        _direction = (_playerObject.transform.position - transform.position).normalized;
-    }
-
-    private void Move()
-    {
-        transform.Translate(_direction * _moveSpeed * Time.deltaTime);
+        transform.position = Vector2.Lerp(_startPosition, _playerObject.transform.position,
+            Math.Clamp(_timer - _waitInterval, 0, 1));
     }
 }

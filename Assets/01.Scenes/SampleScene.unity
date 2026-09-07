@@ -810,6 +810,7 @@ GameObject:
   - component: {fileID: 1247577405}
   - component: {fileID: 1247577404}
   - component: {fileID: 1247577406}
+  - component: {fileID: 1247577407}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -829,6 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ad41d59d878dc4eb9766af0742cdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
+  _animator: {fileID: 1247577407}
   PlayerMoveCommandInvoker: {fileID: 1247577402}
   Speed: 5
   SpeedFluctuation: 0
@@ -1038,6 +1040,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _health: 100
+--- !u!95 &1247577407
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247577398}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41e7dc1731d0d86478659490d914f4b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1487902653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1471,18 @@ PrefabInstance:
     - target: {fileID: 3251738256947089115, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
       propertyPath: m_Name
       value: Straight Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149005834715875982, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149005834715875982, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
+      propertyPath: m_Color.g
+      value: 0.30032042
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149005834715875982, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2745098
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

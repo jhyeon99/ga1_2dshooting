@@ -28,7 +28,6 @@ public class EnemySpawner : MonoBehaviour
         {
             _timer = 0;
             _spawnInterval = Random.Range(_enemyMinSpawnTime, _enemyMaxSpawnTime);
-            Debug.Log("Spawn Interval: " + _spawnInterval);
 
             SpawnWithProbability();
         }

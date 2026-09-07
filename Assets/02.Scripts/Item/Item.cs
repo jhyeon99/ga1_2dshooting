@@ -5,6 +5,7 @@ using Vector2 = UnityEngine.Vector2;
 
 public abstract class Item : MonoBehaviour
 {
+    [SerializeField] protected float _value = 0;
     [SerializeField] private float _lerpTime = 1;
     [SerializeField] private Vector2 _direction = Vector2.zero;
 

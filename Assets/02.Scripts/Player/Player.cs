@@ -13,27 +13,51 @@ public class Player : MonoBehaviour
         _playerFire = GetComponent<PlayerFire>();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float amount)
     {
-        _health -= damage;
+        if (amount < 0)
+        {
+            Debug.LogWarning("데미지는 0보다 작을 수 없습니다.");
+            return;
+        }
+
+        _health -= amount;
         if (_health <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    public void AttackspeedUp()
+    public void AttackspeedUp(float amount)
     {
-        _playerFire.AttackspeedUp();
+        if (amount < 0)
+        {
+            Debug.LogWarning("공격속도 증가량은 0보다 작을 수 없습니다.");
+            return;
+        }
+
+        _playerFire.AttackspeedUp(amount);
     }
 
     public void Heal(float amount)
     {
+        if (amount < 0)
+        {
+            Debug.LogWarning("힐량은 0보다 작을 수 없습니다.");
+            return;
+        }
+
         _health += amount;
     }
 
     public void SpeedUp(float amount)
     {
+        if (amount < 0)
+        {
+            Debug.LogWarning("속도 증가량은 0보다 작을 수 없습니다.");
+            return;
+        }
+
         _playerMove.SpeedUp(amount);
     }
 }

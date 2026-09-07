@@ -6,7 +6,7 @@ public class AttackspeedItem : Item
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().AttackspeedUp();
+            other.GetComponent<Player>().AttackspeedUp(_value);
             Destroy(gameObject);
         }
     }

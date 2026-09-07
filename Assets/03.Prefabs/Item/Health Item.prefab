@@ -74,6 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 798912334781229919, guid: d583c501834c1e745afd0feb3c184b94, type: 3}
+    - {fileID: 3579188917766018961, guid: d583c501834c1e745afd0feb3c184b94, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -101,10 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa03477186472b408df1ff7bc94401e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthItem
-  _lerpTime: 0.5
+  _value: 10
+  _lerpTime: 0.3
   _direction: {x: 0, y: 0}
   _waitInterval: 1
-  _healAmount: 10
 --- !u!70 &3103884057046533450
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

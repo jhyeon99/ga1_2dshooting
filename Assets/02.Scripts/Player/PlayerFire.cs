@@ -70,8 +70,8 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
-    public void AttackspeedUp()
+    public void AttackspeedUp(float amount)
     {
-        CooldownDelay *= 0.9f;
+        CooldownDelay -= amount;
     }
 }

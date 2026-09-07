@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3348225235545632861}
   - component: {fileID: 7252099844389863808}
-  - component: {fileID: 798912334781229919}
   - component: {fileID: 122755070799701113}
+  - component: {fileID: 3579188917766018961}
   m_Layer: 10
   m_Name: Attackspeed Item
   m_TagString: Item
@@ -93,21 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &798912334781229919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8770125786498104723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982affde2558818409e33a4be0487e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackspeedItem
-  _lerpTime: 0.5
-  _direction: {x: 0, y: 0}
-  _waitInterval: 1
 --- !u!70 &122755070799701113
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -145,3 +130,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.99999994, y: 1.9999999}
   m_Direction: 0
+--- !u!114 &3579188917766018961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770125786498104723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982affde2558818409e33a4be0487e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackspeedItem
+  _value: 0.01
+  _lerpTime: 0.3
+  _direction: {x: 0, y: 0}
+  _waitInterval: 1

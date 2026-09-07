@@ -73,7 +73,7 @@ PrefabInstance:
       value: Speed Item
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 798912334781229919, guid: d583c501834c1e745afd0feb3c184b94, type: 3}
+    - {fileID: 3579188917766018961, guid: d583c501834c1e745afd0feb3c184b94, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -101,10 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e4910a706ba749a5b7eff00b83925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedItem
-  _lerpTime: 0.5
+  _value: 0.1
+  _lerpTime: 0.3
   _direction: {x: 0, y: 0}
   _waitInterval: 1
-  _speedUpAmount: 0.1
 --- !u!70 &-4848915463741909395
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

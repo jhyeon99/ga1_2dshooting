@@ -33,7 +33,6 @@ public abstract class Enemy : MonoBehaviour
     {
         _itemFactory = GameObject.FindWithTag("ItemFactory").GetComponent<ItemFactory>();
         _animator = GetComponent<Animator>();
-        GetDirection();
     }
 
     private void Move()
@@ -45,8 +44,6 @@ public abstract class Enemy : MonoBehaviour
     {
         Move();
     }
-
-    protected abstract void GetDirection();
 
 
     private void OnTriggerEnter2D(Collider2D other)

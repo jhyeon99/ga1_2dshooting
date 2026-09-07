@@ -2,24 +2,29 @@ using UnityEngine;
 
 public class ChaserEnemy : Enemy
 {
-    private Transform _target = null;
     public float ChaseUpdateDelay = 1f;
     private float _chaseUpdateTimer = 0;
     private GameObject _player = null;
 
-    protected override void GetDirection()
+    protected override void Start()
     {
+        base.Start();
         _player = GameObject.FindWithTag("Player");
+        Chase();
+    }
+
+    private void Chase()
+    {
         if (_player == null)
         {
             Direction = Vector2.zero;
             return;
         }
 
-        _target = _player.transform;
-        Vector2 direction = _target.position - transform.position;
-        Vector2 normalizedDirection = direction.normalized;
-        Direction = normalizedDirection;
+        Vector3 dir = _player.transform.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+        Direction = Vector2.down;
     }
 
     protected override void Update()
@@ -30,7 +35,7 @@ public class ChaserEnemy : Enemy
         if (_chaseUpdateTimer > ChaseUpdateDelay)
         {
             _chaseUpdateTimer = 0;
-            GetDirection();
+            Chase();
         }
     }
 }

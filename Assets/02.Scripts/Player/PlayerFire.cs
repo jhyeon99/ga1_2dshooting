@@ -35,7 +35,7 @@ public class PlayerFire : MonoBehaviour
         // 1. 스페이스 바를 누른다면
         if (!_isCooltime)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || _isAutoFireMode)
+            if (Input.GetKey(KeyCode.Space) || _isAutoFireMode)
             {
                 _isCooltime = true;
                 _cooldowntimer = CooldownDelay;

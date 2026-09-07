@@ -2,21 +2,26 @@ using UnityEngine;
 
 public class DirectionalEnemy : Enemy
 {
-    private Transform _target;
     private GameObject _player = null;
 
-    protected override void GetDirection()
+    protected override void Start()
     {
+        base.Start();
         _player = GameObject.FindWithTag("Player");
+        GetDirection();
+    }
+
+    private void GetDirection()
+    {
         if (_player == null)
         {
             Direction = Vector2.zero;
             return;
         }
 
-        _target = _player.transform;
-        Vector2 direction = _target.position - transform.position;
-        Vector2 normalizedDirection = direction.normalized;
-        Direction = normalizedDirection;
+        Vector3 dir = _player.transform.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+        Direction = Vector2.down;
     }
 }

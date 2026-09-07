@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
-            if (_itemSpawnProbability <= Random.Range(0f, 1f))
+            if (_itemSpawnProbability >= Random.Range(0f, 1f))
             {
                 _itemFactory.SpawnRandomItem(gameObject.transform.position);
             }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DirectionalEnemy : Enemy
 {
-    public Transform _target;
+    private Transform _target;
     private GameObject _player = null;
 
     protected override void GetDirection()

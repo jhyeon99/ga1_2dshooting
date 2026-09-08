@@ -21,12 +21,12 @@ public abstract class Enemy : MonoBehaviour
 
         if (_itemFactory == null)
         {
-            Debug.LogError("ItemFactory를 찾을 수 없습니다");
+            Debug.LogWarning("ItemFactory를 찾을 수 없습니다");
         }
 
         if (_animator == null)
         {
-            Debug.LogError("Animator를 찾을 수 없습니다.");
+            Debug.LogWarning("Animator를 찾을 수 없습니다.");
         }
     }
 

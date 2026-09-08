@@ -20,7 +20,7 @@ public abstract class Item : MonoBehaviour
 
         if (_playerObject == null)
         {
-            Debug.LogError("플레이어를 찾을 수 없습니다.");
+            Debug.LogWarning("플레이어를 찾을 수 없습니다.");
             return;
         }
     }
@@ -38,7 +38,7 @@ public abstract class Item : MonoBehaviour
     {
         if (_playerObject == null)
         {
-            Debug.LogError("플레이어를 찾을 수 없습니다.");
+            Debug.LogWarning("플레이어를 찾을 수 없습니다.");
             return;
         }
 

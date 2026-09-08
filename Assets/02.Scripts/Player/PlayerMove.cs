@@ -10,7 +10,6 @@ public class PlayerMove : MonoBehaviour
     public PlayerMoveCommandInvoker PlayerMoveCommandInvoker;
 
     public float Speed = 0;
-    public float SpeedFluctuation = 0;
     public float MaxPlayerY = 0;
     public float MinPlayerY = 0;
     public bool PlayerXWarpAble = false;
@@ -23,6 +22,11 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+
+        if (_animator == null)
+        {
+            Debug.LogError("Animator를 찾을 수 없습니다.");
+        }
     }
 
     private void GetInput()
@@ -64,7 +68,11 @@ public class PlayerMove : MonoBehaviour
         // 속도 = 방향 * 속력
         // 매직 넘버: 보는 사람에 따라 의미가 달라질 수 있는 헷갈리는 숫자
         Vector2 normalizedDirection = Vector2.Normalize(direction);
-        _animator.SetInteger("x", (int)normalizedDirection.x);
+        if (_animator != null)
+        {
+            _animator.SetInteger("x", (int)normalizedDirection.x);
+        }
+
         Vector2 nextPlayerPosition = (Vector2)transform.position + normalizedDirection * Speed * Time.deltaTime;
         // deltaTime: 이전 프레임으로부터 지금 프레임까지 시간이 얼마나 지났는지 MS로 반환
 

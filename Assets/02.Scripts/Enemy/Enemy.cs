@@ -14,10 +14,31 @@ public abstract class Enemy : MonoBehaviour
 
     private Animator _animator = null;
 
+    protected virtual void Start()
+    {
+        _itemFactory = GameObject.FindWithTag("ItemFactory").GetComponent<ItemFactory>();
+        _animator = GetComponent<Animator>();
+
+        if (_itemFactory == null)
+        {
+            Debug.LogError("ItemFactory를 찾을 수 없습니다");
+        }
+
+        if (_animator == null)
+        {
+            Debug.LogError("Animator를 찾을 수 없습니다.");
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         _health -= damage;
-        _animator.SetTrigger("Hitted");
+
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Hitted");
+        }
+
         if (_health <= 0)
         {
             if (_itemSpawnProbability >= Random.Range(0f, 1f))
@@ -27,12 +48,6 @@ public abstract class Enemy : MonoBehaviour
 
             Destroy(gameObject);
         }
-    }
-
-    protected virtual void Start()
-    {
-        _itemFactory = GameObject.FindWithTag("ItemFactory").GetComponent<ItemFactory>();
-        _animator = GetComponent<Animator>();
     }
 
     private void Move()

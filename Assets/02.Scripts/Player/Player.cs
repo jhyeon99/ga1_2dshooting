@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private PlayerFire _playerFire = null;
 
     [SerializeField] private GameObject _deathEffectPrefab = null;
+    [SerializeField] private GameObject _getItemEffectPrefab = null;
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
         _playerFire.AttackspeedUp(amount);
     }
 
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
         _health += amount;
     }
 
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
         _playerMove.SpeedUp(amount);
     }
 }

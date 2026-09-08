@@ -7,8 +7,6 @@ public abstract class Item : MonoBehaviour
 {
     [SerializeField] protected float _value = 0;
     [SerializeField] private float _lerpTime = 1;
-    [SerializeField] private Vector2 _direction = Vector2.zero;
-
     [SerializeField] private float _waitInterval = 3;
     private float _timer = 0;
 
@@ -19,6 +17,12 @@ public abstract class Item : MonoBehaviour
     {
         _playerObject = GameObject.FindWithTag("Player");
         _startPosition = transform.position;
+
+        if (_playerObject == null)
+        {
+            Debug.LogError("플레이어를 찾을 수 없습니다.");
+            return;
+        }
     }
 
     protected virtual void Update()
@@ -32,6 +36,12 @@ public abstract class Item : MonoBehaviour
 
     private void LerpToPlayer()
     {
+        if (_playerObject == null)
+        {
+            Debug.LogError("플레이어를 찾을 수 없습니다.");
+            return;
+        }
+
         transform.position = Vector2.Lerp(_startPosition, _playerObject.transform.position,
             Math.Clamp(_timer - _waitInterval, 0, 1));
     }

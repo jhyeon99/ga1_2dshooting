@@ -17,6 +17,7 @@ public class ChaserEnemy : Enemy
     {
         if (_player == null)
         {
+            Debug.LogError("플레이어를 찾을 수 없습니다.");
             Direction = Vector2.zero;
             return;
         }

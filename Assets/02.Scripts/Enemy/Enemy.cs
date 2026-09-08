@@ -68,7 +68,7 @@ public abstract class Enemy : MonoBehaviour
             Player player = other.gameObject.GetComponent<Player>();
             if (player == null)
             {
-                Debug.Log("Player 컴포넌트가 존재하지 않습니다.");
+                Debug.LogWarning("Player 컴포넌트가 존재하지 않습니다.");
                 return;
             }
 

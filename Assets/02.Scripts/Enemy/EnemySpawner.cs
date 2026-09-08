@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (_enemySpawnData == null || _enemySpawnData.Length == 0)
         {
-            Debug.LogWarning("EnemySpawner: Spawn data is empty.");
+            Debug.LogWarning("적 스포너 정보가 비었습니다.");
             return;
         }
 

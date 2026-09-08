@@ -15,13 +15,13 @@ public class DirectionalEnemy : Enemy
     {
         if (_player == null)
         {
-            Direction = Vector2.zero;
+            _direction = Vector2.zero;
             return;
         }
 
         Vector3 dir = _player.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        Direction = Vector2.down;
+        _direction = Vector2.down;
     }
 }

@@ -62,12 +62,12 @@ public class PlayerMove : MonoBehaviour
     {
         // 2. 키보드 입력에 따라 방향을 구한다.
         // 게임에는 벡터라는 타입이 있다. 벡터는 크기와 방향을 의미한다.
-        Vector2 direction = new Vector2(_inputHorizontal, _inputVertical);
+        var direction = new Vector2(_inputHorizontal, _inputVertical);
 
         // 3. 방향과 속력에 따라 이동한다.
         // 속도 = 방향 * 속력
         // 매직 넘버: 보는 사람에 따라 의미가 달라질 수 있는 헷갈리는 숫자
-        Vector2 normalizedDirection = Vector2.Normalize(direction);
+        var normalizedDirection = Vector2.Normalize(direction);
         if (_animator != null)
         {
             _animator.SetInteger("x", (int)normalizedDirection.x);
@@ -94,7 +94,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        PlayerMoveCommand moveCommand = new PlayerMoveCommand(transform, nextPlayerPosition);
+        var moveCommand = new PlayerMoveCommand(transform, nextPlayerPosition);
         PlayerMoveCommandInvoker.ExcuteCommand(moveCommand);
     }
 

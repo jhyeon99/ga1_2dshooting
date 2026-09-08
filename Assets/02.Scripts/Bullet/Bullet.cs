@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
 
-            var enemyScript = other.gameObject.GetComponent<Enemy>();
+            Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
             enemyScript.TakeDamage(_damage);
         }
     }

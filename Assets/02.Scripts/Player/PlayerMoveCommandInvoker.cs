@@ -19,7 +19,7 @@ public class PlayerMoveCommandInvoker : MonoBehaviour
     {
         _isReplaying = true;
 
-        foreach (var command in _commandReplay)
+        foreach (ICommand command in _commandReplay)
         {
             command.Execute();
             yield return null;

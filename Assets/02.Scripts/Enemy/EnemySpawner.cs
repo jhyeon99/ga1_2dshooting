@@ -3,8 +3,8 @@ using UnityEngine;
 [System.Serializable]
 public struct EnemySpawnData
 {
-    public Enemy prefab;
-    public float probability;
+    public Enemy Prefab;
+    public float Probability;
 }
 
 // 역할: 일정 시간마다 적을 생성해주고 싶다.
@@ -42,9 +42,9 @@ public class EnemySpawner : MonoBehaviour
         }
 
         float sum = 0;
-        foreach (var enemySpawnData in _enemySpawnData)
+        foreach (EnemySpawnData enemySpawnData in _enemySpawnData)
         {
-            sum += enemySpawnData.probability;
+            sum += enemySpawnData.Probability;
         }
 
         float probability = Random.Range(0f, sum);
@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
         sum = 0;
         for (int enemyType = 0; enemyType < _enemySpawnData.Length; enemyType++)
         {
-            sum += _enemySpawnData[enemyType].probability;
+            sum += _enemySpawnData[enemyType].Probability;
             if (probability <= sum)
             {
                 Spawn(enemyType);
@@ -63,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(int enemyType)
     {
-        Enemy enemy = Instantiate(_enemySpawnData[enemyType].prefab);
+        Enemy enemy = Instantiate(_enemySpawnData[enemyType].Prefab);
         enemy.transform.position = transform.position;
     }
 }

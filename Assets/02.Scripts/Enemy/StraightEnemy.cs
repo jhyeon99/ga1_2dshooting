@@ -5,6 +5,6 @@ public class StraightEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        Direction = Vector2.down;
+        _direction = Vector2.down;
     }
 }

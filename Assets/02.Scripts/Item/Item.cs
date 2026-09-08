@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
@@ -43,6 +41,6 @@ public abstract class Item : MonoBehaviour
         }
 
         transform.position = Vector2.Lerp(_startPosition, _playerObject.transform.position,
-            Math.Clamp(_timer - _waitInterval, 0, 1));
+            Mathf.Clamp(_timer - _waitInterval, 0, 1));
     }
 }

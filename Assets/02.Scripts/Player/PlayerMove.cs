@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -76,11 +75,11 @@ public class PlayerMove : MonoBehaviour
         Vector2 nextPlayerPosition = (Vector2)transform.position + normalizedDirection * Speed * Time.deltaTime;
         // deltaTime: 이전 프레임으로부터 지금 프레임까지 시간이 얼마나 지났는지 MS로 반환
 
-        nextPlayerPosition.y = Math.Clamp(nextPlayerPosition.y, MinPlayerY, MaxPlayerY);
+        nextPlayerPosition.y = Mathf.Clamp(nextPlayerPosition.y, MinPlayerY, MaxPlayerY);
 
         if (!PlayerXWarpAble)
         {
-            nextPlayerPosition.x = Math.Clamp(nextPlayerPosition.x, -MaxPlayerXAbs, MaxPlayerXAbs);
+            nextPlayerPosition.x = Mathf.Clamp(nextPlayerPosition.x, -MaxPlayerXAbs, MaxPlayerXAbs);
         }
         else
         {

@@ -189,18 +189,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[0].Prefab
-      value: 
-      objectReference: {fileID: -3292730925179113141, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[1].Prefab
-      value: 
-      objectReference: {fileID: 3903172227060318716, guid: 936cbf2eaa4070e44a23f1c0d5aa7d57, type: 3}
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[2].Prefab
-      value: 
-      objectReference: {fileID: 8683304756933643316, guid: 7b88a5be1ace6964eacc1102712d7697, type: 3}
     - target: {fileID: 4429884077144623253, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -395,18 +383,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[0].Prefab
-      value: 
-      objectReference: {fileID: -3292730925179113141, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[1].Prefab
-      value: 
-      objectReference: {fileID: 3903172227060318716, guid: 936cbf2eaa4070e44a23f1c0d5aa7d57, type: 3}
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[2].Prefab
-      value: 
-      objectReference: {fileID: 8683304756933643316, guid: 7b88a5be1ace6964eacc1102712d7697, type: 3}
     - target: {fileID: 4429884077144623253, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -809,12 +785,12 @@ GameObject:
   - component: {fileID: 1247577401}
   - component: {fileID: 1247577400}
   - component: {fileID: 1247577399}
-  - component: {fileID: 1247577402}
   - component: {fileID: 1247577403}
   - component: {fileID: 1247577405}
   - component: {fileID: 1247577404}
   - component: {fileID: 1247577406}
   - component: {fileID: 1247577407}
+  - component: {fileID: 1247577408}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -834,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ad41d59d878dc4eb9766af0742cdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
-  PlayerMoveCommandInvoker: {fileID: 1247577402}
+  PlayerMoveCommandInvoker: {fileID: 1247577408}
   Speed: 5
   MaxPlayerY: -0.5
   MinPlayerY: -4.7
@@ -918,18 +894,6 @@ Transform:
   - {fileID: 79707900}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1247577402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247577398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511c26a347ba3a548a910a905026a722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveCommandInvoker
 --- !u!114 &1247577403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _health: 100
+  _deathEffectPrefab: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
 --- !u!95 &1247577407
 Animator:
   serializedVersion: 7
@@ -1064,6 +1029,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1247577408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247577398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511c26a347ba3a548a910a905026a722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveCommandInvoker
 --- !u!1 &1487902653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1815,18 +1792,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[0].Prefab
-      value: 
-      objectReference: {fileID: -3292730925179113141, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[1].Prefab
-      value: 
-      objectReference: {fileID: 3903172227060318716, guid: 936cbf2eaa4070e44a23f1c0d5aa7d57, type: 3}
-    - target: {fileID: 493790263284389287, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
-      propertyPath: _enemySpawnData.Array.data[2].Prefab
-      value: 
-      objectReference: {fileID: 8683304756933643316, guid: 7b88a5be1ace6964eacc1102712d7697, type: 3}
     - target: {fileID: 4429884077144623253, guid: fea019fd6f887fd439d3139939f995d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

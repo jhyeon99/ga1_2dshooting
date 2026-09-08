@@ -14,6 +14,8 @@ public abstract class Enemy : MonoBehaviour
 
     private Animator _animator = null;
 
+    [SerializeField] private GameObject _deathEffectPrefab = null;
+
     protected virtual void Start()
     {
         _itemFactory = GameObject.FindWithTag("ItemFactory").GetComponent<ItemFactory>();
@@ -46,6 +48,8 @@ public abstract class Enemy : MonoBehaviour
                 _itemFactory.SpawnRandomItem(gameObject.transform.position);
             }
 
+            Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
     }
@@ -72,8 +76,8 @@ public abstract class Enemy : MonoBehaviour
                 return;
             }
 
-            Destroy(gameObject);
             player.TakeDamage(_damage);
+            Destroy(gameObject);
         }
     }
 }

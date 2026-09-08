@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private PlayerMove _playerMove = null;
     private PlayerFire _playerFire = null;
 
+    [SerializeField] private GameObject _deathEffectPrefab = null;
+
     private void Start()
     {
         _playerMove = GetComponent<PlayerMove>();
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
         _health -= amount;
         if (_health <= 0)
         {
+            Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -111,6 +111,7 @@ MonoBehaviour:
   _moveSpeed: 3
   _damage: 40
   _itemSpawnProbability: 0.3
+  _deathEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
 --- !u!50 &227046759928020342
 Rigidbody2D:
   serializedVersion: 5

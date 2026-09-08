@@ -48,9 +48,9 @@ MonoBehaviour:
   _enemyMinSpawnTime: 1
   _enemyMaxSpawnTime: 3
   _enemySpawnData:
-  - prefab: {fileID: -3292730925179113141, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
-    probability: 50
-  - prefab: {fileID: 3903172227060318716, guid: 936cbf2eaa4070e44a23f1c0d5aa7d57, type: 3}
-    probability: 30
-  - prefab: {fileID: 8683304756933643316, guid: 7b88a5be1ace6964eacc1102712d7697, type: 3}
-    probability: 20
+  - Prefab: {fileID: 0}
+    Probability: 50
+  - Prefab: {fileID: 0}
+    Probability: 30
+  - Prefab: {fileID: 0}
+    Probability: 20

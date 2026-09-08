@@ -27,7 +27,11 @@ public class Player : MonoBehaviour
         _health -= amount;
         if (_health <= 0)
         {
-            Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
+            if (_deathEffectPrefab != null)
+            {
+                Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
     }
@@ -40,7 +44,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
+        if (_getItemEffectPrefab != null)
+        {
+            Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
+        }
+
         _playerFire.AttackspeedUp(amount);
     }
 
@@ -52,7 +60,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
+        if (_getItemEffectPrefab != null)
+        {
+            Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
+        }
+
         _health += amount;
     }
 
@@ -64,7 +76,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
+        if (_getItemEffectPrefab != null)
+        {
+            Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
+        }
+
         _playerMove.SpeedUp(amount);
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - DestroyZone
   - Item
   - ItemFactory
+  - FxTemporaire
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Enemy
   - DestroyZone
   - Item
-  - 
+  - Bomb
   - 
   - 
   - 

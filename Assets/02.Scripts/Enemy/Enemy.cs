@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private float _health = 100f;
-    private static Vector2 _direction = Vector2.down;
+    private static readonly Vector2 Direction = Vector2.down;
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private float _damage = 0;
 
@@ -52,7 +52,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(_direction * _moveSpeed * Time.deltaTime);
+        transform.Translate(Direction * _moveSpeed * Time.deltaTime);
     }
 
     protected virtual void Update()

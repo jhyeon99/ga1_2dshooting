@@ -9,7 +9,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private float _damage = 0;
 
-    [SerializeField] private float _itemSpawnProbability = 0.3f;
+    [Range(0f, 1f), SerializeField] private float _itemSpawnProbability = 0.3f;
     private ItemFactory _itemFactory = null;
 
     private Animator _animator = null;

@@ -55,8 +55,7 @@ public abstract class Enemy : MonoBehaviour
                 AudioSource.PlayClipAtPoint(_explosionSound, transform.position);
             }
 
-            ScoreManager scoreManager = GameObject.FindAnyObjectByType<ScoreManager>();
-            scoreManager.AddScore(100);
+            ScoreManager.Instance.AddScore(100);
 
             Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
 

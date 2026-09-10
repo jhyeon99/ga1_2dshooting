@@ -16,6 +16,8 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField] private GameObject _deathEffectPrefab = null;
 
+    [SerializeField] private AudioClip _explosionSound = null;
+
     protected virtual void Start()
     {
         _itemFactory = GameObject.FindWithTag("ItemFactory").GetComponent<ItemFactory>();
@@ -46,6 +48,11 @@ public abstract class Enemy : MonoBehaviour
             if (_itemSpawnProbability >= Random.Range(0f, 1f))
             {
                 _itemFactory.SpawnRandomItem(gameObject.transform.position);
+            }
+
+            if (_explosionSound != null)
+            {
+                AudioSource.PlayClipAtPoint(_explosionSound, transform.position);
             }
 
             Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);

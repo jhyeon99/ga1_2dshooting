@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7252099844389863808, guid: d583c501834c1e745afd0feb3c184b94, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8770125786498104723, guid: d583c501834c1e745afd0feb3c184b94, type: 3}
       propertyPath: m_Name
       value: Speed Item
@@ -110,7 +114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedItem
   _value: 0.1
   _lerpTime: 0.3
-  _direction: {x: 0, y: 0}
   _waitInterval: 1
 --- !u!95 &4337390381678397686
 Animator:

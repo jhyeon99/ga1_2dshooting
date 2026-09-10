@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2064859774160998932, guid: 606e3127513c6c74d852755e18a67337, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -108,7 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackspeedItem
   _value: 0.01
   _lerpTime: 0.3
-  _direction: {x: 0, y: 0}
   _waitInterval: 1
 --- !u!95 &8817778706628904423
 Animator:

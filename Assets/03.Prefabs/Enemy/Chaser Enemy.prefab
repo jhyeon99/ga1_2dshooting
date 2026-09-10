@@ -113,6 +113,7 @@ MonoBehaviour:
   _damage: 40
   _itemSpawnProbability: 0.3
   _deathEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
+  _explosionSound: {fileID: 0}
   ChaseUpdateDelay: 1
 --- !u!50 &-2949969562282811985
 Rigidbody2D:

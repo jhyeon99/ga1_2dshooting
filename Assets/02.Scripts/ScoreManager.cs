@@ -9,7 +9,8 @@ public class ScoreManager : MonoBehaviour
     // 관리: 특정 데이터에 대한 무결성과 생성,읽기,수정,삭제 등과 관련된 게임 로직
     private int _bestScore;
     private int _currentScore = 0;
-    private int _lastRefreshScore = -1;
+
+    private const string SaveKey = "BestScore";
 
     // UI 책임 추가 (TMP)
     [SerializeField] private TextMeshProUGUI _bestScoreTextUI;
@@ -29,6 +30,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        _bestScore = PlayerPrefs.GetInt(SaveKey);
         Refresh();
     }
 
@@ -40,6 +42,8 @@ public class ScoreManager : MonoBehaviour
         if (_currentScore > _bestScore)
         {
             _bestScore = _currentScore;
+            PlayerPrefs.SetInt(SaveKey, _bestScore);
+            PlayerPrefs.Save();
         }
 
         Refresh();

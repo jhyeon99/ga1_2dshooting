@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 
     private PlayerMove _playerMove = null;
     private PlayerFire _playerFire = null;
+    private PlayerAutoMove _playerAutoMove = null;
 
     [SerializeField] private GameObject _deathEffectPrefab = null;
     [SerializeField] private GameObject _getItemEffectPrefab = null;
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     {
         _playerMove = GetComponent<PlayerMove>();
         _playerFire = GetComponent<PlayerFire>();
+        _playerAutoMove = GetComponent<PlayerAutoMove>();
     }
 
     public void TakeDamage(float amount)
@@ -81,6 +83,7 @@ public class Player : MonoBehaviour
             Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
         }
 
-        _playerMove.SpeedUp(amount);
+        //_playerMove.SpeedUp(amount);
+        _playerAutoMove.SpeedUp(amount);
     }
 }

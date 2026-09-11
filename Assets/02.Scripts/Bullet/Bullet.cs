@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -6,6 +7,9 @@ public class Bullet : MonoBehaviour
     public Vector2 Direction = Vector2.up;
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private int _damage = 0;
+
+    [SerializeField] private BulletType _type;
+    public BulletType Type => _type;
 
     private AudioSource _audioSource;
 

@@ -46,7 +46,7 @@ public class PlayerFire : MonoBehaviour
                 for (int i = 0; i < NumOfBulletFireOnce; i++)
                 {
                     float offsetX = -lengthOfBullets / 2 + i * DistanceBetweenFiredBullets;
-                    Bullet bullet = BulletPool.Instance.GetBullet();
+                    Bullet bullet = BulletPool.Instance.GetBullet(BulletType.Main);
                     bullet.transform.position = FirePoint.position;
                     bullet.transform.position = (Vector2)bullet.transform.position + new Vector2(offsetX, 0);
                 }
@@ -55,7 +55,7 @@ public class PlayerFire : MonoBehaviour
                 {
                     foreach (Transform subBulletTransform in SubBulletFirePoint)
                     {
-                        GameObject subBullet = Instantiate(SubBulletPrefab);
+                        Bullet subBullet = BulletPool.Instance.GetBullet(BulletType.Sub);
                         subBullet.transform.position = subBulletTransform.position;
                     }
                 }

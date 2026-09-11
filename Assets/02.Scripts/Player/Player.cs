@@ -4,7 +4,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _health = 100f;
 
-    private PlayerMove _playerMove = null;
     private PlayerFire _playerFire = null;
     private PlayerAutoMove _playerAutoMove = null;
 
@@ -13,7 +12,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _playerMove = GetComponent<PlayerMove>();
         _playerFire = GetComponent<PlayerFire>();
         _playerAutoMove = GetComponent<PlayerAutoMove>();
     }

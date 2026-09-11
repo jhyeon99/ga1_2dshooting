@@ -7,7 +7,7 @@ public class DestroyZone : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
         }
         else
         {

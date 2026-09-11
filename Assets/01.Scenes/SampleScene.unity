@@ -1621,7 +1621,7 @@ MonoBehaviour:
   NumOfBulletFireOnce: 3
   DistanceBetweenFiredBullets: 0.5
   CooldownDelay: 0.5
-  IsFireSubBullet: 0
+  IsFireSubBullet: 1
   SubBulletFirePoint:
   - {fileID: 676029542}
   - {fileID: 79707900}
@@ -1823,7 +1823,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb47372bff6fe03409f9f705a5abb55d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletPool
-  bulletPrefab: {fileID: 7223907041392933404, guid: 0d60d5431c839be44aff755164e2bd1d, type: 3}
+  _bulletPrefabs:
+  - {fileID: 7223907041392933404, guid: 0d60d5431c839be44aff755164e2bd1d, type: 3}
+  - {fileID: 7223907041392933404, guid: cbf9a1fe3c3e52849905737168752181, type: 3}
   _poolSize: 50
 --- !u!1 &1470383170
 GameObject:

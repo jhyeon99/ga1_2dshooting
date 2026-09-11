@@ -1,6 +1,10 @@
+using System;
+
 [System.Serializable]
-public struct EnemySpawnData
+public class EnemySpawnData
 {
-    public Enemy Prefab;
-    public float Weight;
+    public string PrefabPath { get; set; }
+    public float Weight { get; set; }
+
+    [NonSerialized] public Enemy Prefab;
 }

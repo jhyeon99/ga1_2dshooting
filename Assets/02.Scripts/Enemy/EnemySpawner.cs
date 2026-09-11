@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     // 필요 속성
     // - 타이머
-    [SerializeField] private float _spawnInterval;
+    private float _spawnInterval;
     private float _timer = 0;
     [SerializeField] private float _enemyMinSpawnTime = 1f;
     [SerializeField] private float _enemyMaxSpawnTime = 3f;
@@ -55,6 +55,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(int enemyType)
     {
+        if (_spawnDataTable.Datas[enemyType].Prefab == null) return;
+
         Enemy enemy = Instantiate(_spawnDataTable.Datas[enemyType].Prefab);
         enemy.transform.position = transform.position;
     }

@@ -10,8 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _enemyMinSpawnTime = 1f;
     [SerializeField] private float _enemyMaxSpawnTime = 3f;
 
-    // - 생성할 프리팹
-    [SerializeField] private EnemySpawnData[] _enemySpawnData;
+    [SerializeField] private EnemySpawnDataTableSO _spawnDataTable;
 
 
     private void Update()
@@ -28,14 +27,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnWithProbability()
     {
-        if (_enemySpawnData == null || _enemySpawnData.Length == 0)
+        if (_spawnDataTable == null || _spawnDataTable.Datas.Length == 0)
         {
-            Debug.LogWarning("적 스포너 정보가 비었습니다.");
+            Debug.LogWarning("적 스포너 테이블 정보가 비었습니다.");
             return;
         }
 
         float totalWeight = 0;
-        foreach (EnemySpawnData enemySpawnData in _enemySpawnData)
+        foreach (EnemySpawnData enemySpawnData in _spawnDataTable.Datas)
         {
             totalWeight += enemySpawnData.Weight;
         }
@@ -43,9 +42,9 @@ public class EnemySpawner : MonoBehaviour
         float probability = Random.Range(0f, totalWeight);
 
         float cumulativeWeight = 0;
-        for (int enemyType = 0; enemyType < _enemySpawnData.Length; enemyType++)
+        for (int enemyType = 0; enemyType < _spawnDataTable.Datas.Length; enemyType++)
         {
-            cumulativeWeight += _enemySpawnData[enemyType].Weight;
+            cumulativeWeight += _spawnDataTable.Datas[enemyType].Weight;
             if (probability <= cumulativeWeight)
             {
                 Spawn(enemyType);
@@ -56,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(int enemyType)
     {
-        Enemy enemy = Instantiate(_enemySpawnData[enemyType].Prefab);
+        Enemy enemy = Instantiate(_spawnDataTable.Datas[enemyType].Prefab);
         enemy.transform.position = transform.position;
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9700c91bd6e9bac4d9258afcf5fb4744, type: 3}
+  m_Name: EnemySpawnDataTable
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnDataTable
+  Datas:
+  - Prefab: {fileID: -3292730925179113141, guid: 23a9786d2a378e144a847bb3890e5478, type: 3}
+    Weight: 40
+  - Prefab: {fileID: 3903172227060318716, guid: 936cbf2eaa4070e44a23f1c0d5aa7d57, type: 3}
+    Weight: 30
+  - Prefab: {fileID: 8683304756933643316, guid: 7b88a5be1ace6964eacc1102712d7697, type: 3}
+    Weight: 20

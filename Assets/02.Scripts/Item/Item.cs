@@ -4,17 +4,17 @@ using Vector2 = UnityEngine.Vector2;
 public abstract class Item : MonoBehaviour
 {
     [SerializeField] protected float _value = 0;
-    [SerializeField] private float _lerpTime = 1;
+    [SerializeField] private float _speed = 1;
     [SerializeField] private float _waitInterval = 3;
+
     private float _timer = 0;
 
-    private Vector2 _startPosition = Vector2.zero;
+
     private GameObject _playerObject = null;
 
     protected virtual void Start()
     {
         _playerObject = GameObject.FindWithTag("Player");
-        _startPosition = transform.position;
 
         if (_playerObject == null)
         {
@@ -40,7 +40,7 @@ public abstract class Item : MonoBehaviour
             return;
         }
 
-        transform.position = Vector2.Lerp(_startPosition, _playerObject.transform.position,
-            Mathf.Clamp(_timer - _waitInterval, 0, 1));
+        transform.position = Vector2.Lerp(transform.position, _playerObject.transform.position,
+            _speed * Time.deltaTime);
     }
 }

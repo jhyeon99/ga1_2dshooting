@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedItem
   _value: 0.1
-  _lerpTime: 0.3
+  _speed: 3
   _waitInterval: 1
 --- !u!95 &4337390381678397686
 Animator:

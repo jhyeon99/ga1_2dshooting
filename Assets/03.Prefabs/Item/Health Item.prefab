@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthItem
   _value: 10
-  _lerpTime: 0.3
+  _speed: 3
   _waitInterval: 1
 --- !u!95 &891853857549476615
 Animator:

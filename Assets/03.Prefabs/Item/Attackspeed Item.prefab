@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackspeedItem
   _value: 0.01
-  _lerpTime: 0.3
+  _speed: 3
   _waitInterval: 1
 --- !u!95 &8817778706628904423
 Animator:

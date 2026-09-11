@@ -2,13 +2,34 @@ using UnityEngine;
 
 public class ItemFactory : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _itemPrefabs;
+    [SerializeField] private ItemSpawnDataTableSO _spawnDataTable;
 
-    public GameObject SpawnRandomItem(Vector3 spawnPosition)
+    public void SpawnItemWithData(Vector3 spawnPosition)
     {
-        if (_itemPrefabs == null || _itemPrefabs.Length == 0) return null;
+        if (_spawnDataTable == null || _spawnDataTable.Datas.Length == 0) return;
 
-        int randomIndex = Random.Range(0, _itemPrefabs.Length);
-        return Instantiate(_itemPrefabs[randomIndex], spawnPosition, Quaternion.identity);
+
+        float totalWeight = 0;
+        foreach (ItemSpawnData itemSpawnData in _spawnDataTable.Datas)
+        {
+            totalWeight += itemSpawnData.Weight;
+        }
+
+        float probability = Random.Range(0f, totalWeight);
+
+        float cumulativeWeight = 0;
+        for (int itemType = 0; itemType < _spawnDataTable.Datas.Length; itemType++)
+        {
+            cumulativeWeight += _spawnDataTable.Datas[itemType].Weight;
+            if (probability <= cumulativeWeight)
+            {
+                if (_spawnDataTable.Datas[itemType].Prefab == null)
+                {
+                    break;
+                }
+
+                Instantiate(_spawnDataTable.Datas[itemType].Prefab, spawnPosition, Quaternion.identity);
+            }
+        }
     }
 }

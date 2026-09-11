@@ -9,7 +9,6 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private float _damage = 0;
 
-    [Range(0f, 1f), SerializeField] private float _itemSpawnProbability = 0.3f;
     private ItemFactory _itemFactory = null;
 
     private Animator _animator = null;
@@ -45,9 +44,9 @@ public abstract class Enemy : MonoBehaviour
 
         if (_health <= 0)
         {
-            if (_itemSpawnProbability >= Random.Range(0f, 1f))
+            if (_itemFactory != null)
             {
-                _itemFactory.SpawnRandomItem(gameObject.transform.position);
+                _itemFactory.SpawnItemWithData(transform.position);
             }
 
             if (_explosionSound != null)

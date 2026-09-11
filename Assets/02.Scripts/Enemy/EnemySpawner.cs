@@ -34,19 +34,19 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        float sum = 0;
+        float totalWeight = 0;
         foreach (EnemySpawnData enemySpawnData in _enemySpawnData)
         {
-            sum += enemySpawnData.Weight;
+            totalWeight += enemySpawnData.Weight;
         }
 
-        float probability = Random.Range(0f, sum);
+        float probability = Random.Range(0f, totalWeight);
 
-        sum = 0;
+        float cumulativeWeight = 0;
         for (int enemyType = 0; enemyType < _enemySpawnData.Length; enemyType++)
         {
-            sum += _enemySpawnData[enemyType].Weight;
-            if (probability <= sum)
+            cumulativeWeight += _enemySpawnData[enemyType].Weight;
+            if (probability <= cumulativeWeight)
             {
                 Spawn(enemyType);
                 break;

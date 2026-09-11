@@ -1,12 +1,5 @@
 using UnityEngine;
 
-[System.Serializable]
-public struct EnemySpawnData
-{
-    public Enemy Prefab;
-    public float Probability;
-}
-
 // 역할: 일정 시간마다 적을 생성해주고 싶다.
 public class EnemySpawner : MonoBehaviour
 {
@@ -44,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         float sum = 0;
         foreach (EnemySpawnData enemySpawnData in _enemySpawnData)
         {
-            sum += enemySpawnData.Probability;
+            sum += enemySpawnData.Weight;
         }
 
         float probability = Random.Range(0f, sum);
@@ -52,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         sum = 0;
         for (int enemyType = 0; enemyType < _enemySpawnData.Length; enemyType++)
         {
-            sum += _enemySpawnData[enemyType].Probability;
+            sum += _enemySpawnData[enemyType].Weight;
             if (probability <= sum)
             {
                 Spawn(enemyType);

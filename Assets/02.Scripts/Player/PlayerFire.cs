@@ -19,7 +19,7 @@ public class PlayerFire : MonoBehaviour
     private float _cooldowntimer = 0;
     public float CooldownDelay = 1;
 
-    private bool _isAutoFireMode = false;
+    private bool _isAutoFireMode = true;
 
     public bool IsFireSubBullet = false;
     public Transform[] SubBulletFirePoint = null;

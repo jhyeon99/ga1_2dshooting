@@ -71,6 +71,11 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
+    public void SetAuto(bool auto)
+    {
+        _isAutoFireMode = auto;
+    }
+
     public void AttackspeedUp(float amount)
     {
         CooldownDelay -= amount;

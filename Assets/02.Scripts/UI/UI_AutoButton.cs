@@ -12,12 +12,15 @@ public class UI_AutoButton : MonoBehaviour
     [SerializeField] private Sprite _offSprite;
 
     private Image _myImage;
-    private bool _autoMode = true;
+    private AudioSource _audioSource;
     private Player _player;
+    private bool _autoMode = true;
+
 
     private void Start()
     {
         _myImage = GetComponent<Image>();
+        _audioSource = GetComponent<AudioSource>();
         _player = FindAnyObjectByType<Player>();
     }
 
@@ -31,4 +34,13 @@ public class UI_AutoButton : MonoBehaviour
 
         _myImage.sprite = _autoMode ? _onSprite : _offSprite;
     }
+
+    public void PlaySound()
+    {
+        _audioSource.Play();
+    }
+
+    // Todo: 버튼 클릭할 때 애니메이션 + 사운드 추가
+    // 애니메이션: 코드로 구현 약간 커졌다가 원래대로..
+    // 사운드: 일레븐랩스에서 버튼 클릭 공용 사운드 만들어서 적용
 }

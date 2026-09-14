@@ -108,6 +108,6 @@ public class PlayerMove : MonoBehaviour
 
     public void SpeedUp(float amount)
     {
-        Speed -= amount;
+        Speed += amount;
     }
 }

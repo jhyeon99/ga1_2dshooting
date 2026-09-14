@@ -12,7 +12,7 @@ public class Upgrade : ISerializationCallbackReceiver
     [SerializeField] private float _increaseCost;
 
     // 실행중에 동적으로 바뀌는 속성
-    private int _level = 1;
+    private int _level;
     public int Level => _level;
     private float _currentValue;
     public float CurrentValue => _currentValue;
@@ -43,7 +43,7 @@ public class Upgrade : ISerializationCallbackReceiver
     {
         _currentValue = _defaultValue + _level * _increaseValue;
         _nextValue = _defaultValue + (_level + 1) * _increaseValue;
-        _cost = (int)(_defaultCost + Mathf.Pow(_increaseCost, _level));
+        _cost = (int)(_defaultCost * Mathf.Pow(_increaseCost, _level));
     }
 
     // --- ISerializationCallbackReceiver 구현 ---
@@ -57,7 +57,7 @@ public class Upgrade : ISerializationCallbackReceiver
     public void OnAfterDeserialize()
     {
         // 0으로 초기화되는 현상을 방지하기 위해 1 미만일 때 1로 보정
-        if (_level < 1) _level = 1;
+        if (_level < 0) _level = 0;
 
         Calculate();
     }

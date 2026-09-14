@@ -23,12 +23,12 @@ public class ItemFactory : MonoBehaviour
             cumulativeWeight += _spawnDataTable.Datas[itemType].Weight;
             if (probability <= cumulativeWeight)
             {
-                if (_spawnDataTable.Datas[itemType].Prefab == null)
+                if (_spawnDataTable.Datas[itemType].Prefab != null)
                 {
-                    break;
+                    Instantiate(_spawnDataTable.Datas[itemType].Prefab, spawnPosition, Quaternion.identity);
                 }
 
-                Instantiate(_spawnDataTable.Datas[itemType].Prefab, spawnPosition, Quaternion.identity);
+                break;
             }
         }
     }

@@ -102,3 +102,16 @@ dotnet_naming_rule.parameters_and_locals_camel.severity = warning
 
 dotnet_diagnostic.IDE1006.severity = warning # Naming Rule 위반
 dotnet_diagnostic.IDE0055.severity = warning # Formatting 위반
+
+# UI_로 시작하는 파일: 클래스명은 UI_ + PascalCase
+[Assets/02.Scripts/**UI_*.cs]
+
+dotnet_naming_style.ui_pascal_case.required_prefix = UI_
+dotnet_naming_style.ui_pascal_case.capitalization = pascal_case
+
+dotnet_naming_symbols.ui_classes.applicable_kinds = class
+dotnet_naming_symbols.ui_classes.applicable_accessibilities = *
+
+dotnet_naming_rule.ui_classes_prefix.symbols = ui_classes
+dotnet_naming_rule.ui_classes_prefix.style = ui_pascal_case
+dotnet_naming_rule.ui_classes_prefix.severity = warning

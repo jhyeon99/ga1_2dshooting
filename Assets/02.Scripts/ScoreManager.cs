@@ -31,11 +31,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey(SaveKey))
-        {
-            _bestScore = PlayerPrefs.GetInt(SaveKey);
-        }
-
         _bestScore = PlayerPrefs.GetInt(SaveKey, 0);
         Refresh();
     }

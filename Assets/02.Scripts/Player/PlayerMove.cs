@@ -72,7 +72,8 @@ public class PlayerMove : MonoBehaviour
             _animator.SetInteger("x", (int)normalizedDirection.x);
         }
 
-        Vector2 nextPlayerPosition = (Vector2)transform.position + normalizedDirection * Speed * Time.deltaTime;
+        float finalSpeed = Speed * UpgradeManager.Instance.Upgrades[(int)UpgradeType.Speed].CurrentValue;
+        Vector2 nextPlayerPosition = (Vector2)transform.position + normalizedDirection * finalSpeed * Time.deltaTime;
         // deltaTime: 이전 프레임으로부터 지금 프레임까지 시간이 얼마나 지났는지 MS로 반환
 
         nextPlayerPosition.y = Mathf.Clamp(nextPlayerPosition.y, MinPlayerY, MaxPlayerY);
@@ -107,6 +108,6 @@ public class PlayerMove : MonoBehaviour
 
     public void SpeedUp(float amount)
     {
-        Speed += amount;
+        Speed -= amount;
     }
 }

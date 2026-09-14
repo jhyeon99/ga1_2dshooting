@@ -6,15 +6,11 @@ public class UpgradeManager : MonoBehaviour
     private static UpgradeManager _instance;
     public static UpgradeManager Instance => _instance;
 
-    private float _attackLevel = 1;
-    private float _hpLevel = 1;
-    private float _speedLevel = 1;
+    [SerializeField] private Upgrade[] _upgrades;
+    public Upgrade[] Upgrades => _upgrades;
 
-    private Player _player;
-
-    [SerializeField] private float _attackUpAmount = 0.01f;
-    [SerializeField] private float _healAmount = 1;
-    [SerializeField] private float _speedUpAmount = 0.01f;
+    // 업그레이드 UI들
+    [SerializeField] private UI_Upgrade[] _uiUpgrades;
 
     private void Awake()
     {
@@ -29,24 +25,33 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        _player = FindAnyObjectByType<Player>();
+        RefreshUI();
     }
 
-    public void AttackUpgrade()
+    public void LevelUp(UpgradeType upgradeType)
     {
-        _attackLevel++;
-        _player.AttackspeedUp(_attackUpAmount);
+        // 골드 매니저에게 돈이 있는지 물어보고 돈이 있다면 차감 후 업그레이드 호출
+
+        Upgrade upgrade = _upgrades[(int)upgradeType];
+
+        if (ScoreManager.Instance.Score < upgrade.Cost)
+        {
+            return;
+        }
+
+        ScoreManager.Instance.SpendScore(upgrade.Cost);
+
+        _upgrades[(int)upgradeType].LevelUp();
+
+        RefreshUI();
     }
 
-    public void HpUpgrade()
+    // UI 갱신
+    private void RefreshUI()
     {
-        _hpLevel++;
-        _player.Heal(_healAmount);
-    }
-
-    public void SpeedUpgrade()
-    {
-        _speedLevel++;
-        _player.SpeedUp(_speedUpAmount);
+        foreach (UI_Upgrade uiUpgrade in _uiUpgrades)
+        {
+            uiUpgrade.Refresh();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,8 +26,6 @@ public class PlayerAutoMove : MonoBehaviour
         // 1. 타겟을 구한다.
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
         if (targets.Length == 0) return;
-
-        GameObject target = targets[0];
         float minDistance = float.MaxValue;
 
         // 1-1. 가장 가까운 타겟을 찾는다.
@@ -64,15 +63,11 @@ public class PlayerAutoMove : MonoBehaviour
             direction.y -= 1;
         }
 
+        float finalSpeed = _speed * UpgradeManager.Instance.Upgrades[(int)UpgradeType.Speed].CurrentValue;
         // 3. 속도에 맞게 이동한다.
-        transform.position += direction * _speed * Time.deltaTime;
+        transform.position += direction * finalSpeed * Time.deltaTime;
 
         transform.position = new Vector3(transform.position.x,
             Mathf.Clamp(transform.position.y, _minPlayerY, _maxPlayerY), transform.position.z);
-    }
-
-    public void SpeedUp(float amount)
-    {
-        _speed += amount;
     }
 }

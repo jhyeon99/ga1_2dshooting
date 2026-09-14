@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
     // 관리: 특정 데이터에 대한 무결성과 생성,읽기,수정,삭제 등과 관련된 게임 로직
     private int _bestScore;
     private int _currentScore = 0;
+    public int Score => _currentScore;
 
     private const string SaveKey = "BestScore";
 
@@ -30,7 +31,12 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        _bestScore = PlayerPrefs.GetInt(SaveKey);
+        if (PlayerPrefs.HasKey(SaveKey))
+        {
+            _bestScore = PlayerPrefs.GetInt(SaveKey);
+        }
+
+        _bestScore = PlayerPrefs.GetInt(SaveKey, 0);
         Refresh();
     }
 
@@ -49,9 +55,22 @@ public class ScoreManager : MonoBehaviour
         Refresh();
     }
 
+    public void SpendScore(int amount)
+    {
+        _currentScore -= amount;
+        Refresh();
+    }
+
     private void Refresh()
     {
-        _bestScoreTextUI.text = $"BestScore: {_bestScore:N0}";
-        _currentScoreTextUI.text = $"Score: {_currentScore:N0}";
+        if (_bestScoreTextUI != null)
+        {
+            _bestScoreTextUI.text = $"BestScore: {_bestScore:N0}";
+        }
+
+        if (_currentScoreTextUI != null)
+        {
+            _currentScoreTextUI.text = $"Score: {_currentScore:N0}";
+        }
     }
 }

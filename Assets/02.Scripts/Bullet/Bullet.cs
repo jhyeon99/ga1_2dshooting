@@ -50,7 +50,8 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false); // 비활성화
 
             Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
-            enemyScript.TakeDamage(_damage);
+            int finalDamage = _damage + (int)UpgradeManager.Instance.Upgrades[0].CurrentValue;
+            enemyScript.TakeDamage(finalDamage);
         }
     }
 }

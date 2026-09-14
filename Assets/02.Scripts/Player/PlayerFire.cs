@@ -38,7 +38,9 @@ public class PlayerFire : MonoBehaviour
             if (Input.GetKey(KeyCode.Space) || _isAutoFireMode)
             {
                 _isCooltime = true;
-                _cooldowntimer = CooldownDelay;
+                float finalCooldownDelay =
+                    CooldownDelay - UpgradeManager.Instance.Upgrades[(int)UpgradeType.Attack].CurrentValue;
+                _cooldowntimer = finalCooldownDelay;
                 // 2. 총알 프리팹을 생성한다.
                 // Instantiate는 프리팹을 복사해서 (Monobehaviour를 상속받는) 게임 오브젝트를 생성하고 씬에 넣어주는 기능
 

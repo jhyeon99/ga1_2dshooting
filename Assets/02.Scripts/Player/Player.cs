@@ -1,3 +1,4 @@
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -5,7 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _health = 100f;
 
     private PlayerFire _playerFire = null;
-    private PlayerAutoMove _playerAutoMove = null;
+    private PlayerMove _playerMove = null;
 
     [SerializeField] private GameObject _deathEffectPrefab = null;
     [SerializeField] private GameObject _getItemEffectPrefab = null;
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _playerFire = GetComponent<PlayerFire>();
-        _playerAutoMove = GetComponent<PlayerAutoMove>();
+        _playerMove = GetComponent<PlayerMove>();
     }
 
     public void TakeDamage(float amount)
@@ -81,7 +82,6 @@ public class Player : MonoBehaviour
             Instantiate(_getItemEffectPrefab, transform.position, Quaternion.identity);
         }
 
-        //_playerMove.SpeedUp(amount);
-        _playerAutoMove.SpeedUp(amount);
+        _playerMove.SpeedUp(amount);
     }
 }

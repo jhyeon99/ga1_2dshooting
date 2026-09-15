@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemySpawnDataTable", menuName = "Scriptable Objects/EnemySpawnDataTable")]
+[CreateAssetMenu(fileName = "EnemySpawnDataTableSO", menuName = "Scriptable Objects/EnemySpawnDataTableSO")]
 public class EnemySpawnDataTableSO : ScriptableObject
 {
     public EnemySpawnData[] Datas;

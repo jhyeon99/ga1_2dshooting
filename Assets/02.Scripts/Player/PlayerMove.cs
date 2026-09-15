@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
 
         if (_animator == null)
         {
-            Debug.LogError("Animator를 찾을 수 없습니다.");
+            Debug.LogWarning("Animator를 찾을 수 없습니다.");
         }
     }
 

@@ -108,11 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d2d9b4db6c7d04c847ea74db15ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StraightEnemy
+  _baseHealth: 80
   _health: 100
   _moveSpeed: 2
   _damage: 40
-  _itemSpawnProbability: 0.3
   _deathEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
+  _explosionSound: {fileID: 0}
 --- !u!50 &-2534459469108669188
 Rigidbody2D:
   serializedVersion: 5

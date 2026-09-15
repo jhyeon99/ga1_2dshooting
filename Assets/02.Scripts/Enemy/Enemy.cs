@@ -4,7 +4,8 @@ using Random = UnityEngine.Random;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float _health = 100f;
+    [SerializeField] private int _baseHealth; // 적의 기준 체력
+    [SerializeField] private float _health = 100f; // 적의 현재 체력
     private static readonly Vector2 Direction = Vector2.down;
     [SerializeField] private float _moveSpeed = 0;
     [SerializeField] private float _damage = 0;
@@ -72,6 +73,11 @@ public abstract class Enemy : MonoBehaviour
         Move();
     }
 
+    public void SetHealthBalance(float multiplier)
+    {
+        // 체력 초기화
+        _health = (int)(_baseHealth * multiplier);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -11,7 +11,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _enemyMaxSpawnTime = 3f;
 
     [SerializeField] private EnemySpawnDataTableSO _spawnDataTable;
+    [SerializeField] private EnemyBalanceDataTableSO _balanceDataTable;
 
+    private float GetHealthMultiplier()
+    {
+        foreach (EnemyBalanceData data in _balanceDataTable.Datas)
+        {
+            if (ScoreManager.Instance.BestScore < data.RequiredScore)
+            {
+                return data.HealthMultiplier;
+            }
+        }
+
+        int lastIndex = _balanceDataTable.Datas.Length - 1;
+        return _balanceDataTable.Datas[lastIndex].HealthMultiplier;
+    }
 
     private void Update()
     {
@@ -59,5 +73,6 @@ public class EnemySpawner : MonoBehaviour
 
         Enemy enemy = Instantiate(_spawnDataTable.Datas[enemyType].Prefab);
         enemy.transform.position = transform.position;
+        enemy.GetComponent<Enemy>().SetHealthBalance(GetHealthMultiplier());
     }
 }

@@ -29,7 +29,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError($"[오류] 구글 시트 다운로드 실패: {www.error}");
+                Debug.LogWarning($"[오류] 구글 시트 다운로드 실패: {www.error}");
                 yield break;
             }
 
@@ -45,7 +45,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
             }
             else
             {
-                Debug.LogError("EnemySpawnDataTableSO가 인스펙터에 할당되지 않았습니다!");
+                Debug.LogWarning("EnemySpawnDataTableSO가 인스펙터에 할당되지 않았습니다!");
             }
         }
     }
@@ -82,7 +82,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"[로드 실패] Assets/Resources/{cleanPath}.prefab 파일이 없습니다.");
+                Debug.LogWarning($"[로드 실패] Assets/Resources/{cleanPath}.prefab 파일이 없습니다.");
             }
         }
     }
